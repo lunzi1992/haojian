@@ -81,16 +81,16 @@ public final class RiskEvaluator {
         
         if temperature >= adjustedMin && temperature <= adjustedMax {
             score = 100
-            message = "温度适宜（\(String(format: "%.1f°C", temperature))"
+            message = "温度适宜(\(String(format: "%.1f°C", temperature))"
         } else {
             let deviation = abs(temperature - ((idealMin + idealMax) / 2))
             let adjustedDeviation = deviation * ageFactor
             score = max(0, 100 - Int(adjustedDeviation * 5))
             
             if temperature < adjustedMin {
-                message = "温度偏低（\(String(format: "%.1f°C", temperature)），注意保暖"
+                message = "温度偏低(\(String(format: "%.1f°C", temperature))，注意保暖"
             } else {
-                message = "温度偏高（\(String(format: "%.1f°C", temperature)），注意降温补水"
+                message = "温度偏高(\(String(format: "%.1f°C", temperature))，注意降温补水"
             }
         }
         
@@ -114,13 +114,13 @@ public final class RiskEvaluator {
         
         if uvIndex <= safeThreshold {
             score = 100
-            message = "紫外线强度正常（UV \(String(format: "%.1f", uvIndex)）"
+            message = "紫外线强度正常(UV \(String(format: "%.1f", uvIndex))"
         } else if uvIndex <= moderateThreshold {
             score = 50
-            message = "紫外线偏强（UV \(String(format: "%.1f", uvIndex)），注意防晒"
+            message = "紫外线偏强(UV \(String(format: "%.1f", uvIndex))，注意防晒"
         } else {
             score = 0
-            message = "紫外线过强（UV \(String(format: "%.1f", uvIndex)），避免长时间露天活动"
+            message = "紫外线过强(UV \(String(format: "%.1f", uvIndex))，避免长时间露天活动"
         }
         
         return FactorScore(
@@ -143,16 +143,16 @@ public final class RiskEvaluator {
         
         if aqi <= goodThreshold {
             score = 100
-            message = "空气质量优（AQI \(aqi)）"
+            message = "空气质量优(AQI \(aqi))"
         } else if aqi <= moderateThreshold {
             score = 60
-            message = "空气质量良（AQI \(aqi)），影响不大"
+            message = "空气质量良(AQI \(aqi))，影响不大"
         } else if aqi <= 150 {
             score = 30
-            message = "空气质量轻度污染（AQI \(aqi)），缩短外出时间"
+            message = "空气质量轻度污染(AQI \(aqi))，缩短外出时间"
         } else {
             score = 0
-            message = "空气质量较差（AQI \(aqi)），不建议外出"
+            message = "空气质量较差(AQI \(aqi))，不建议外出"
         }
         
         return FactorScore(
@@ -175,13 +175,13 @@ public final class RiskEvaluator {
         
         if windSpeed <= safeThreshold {
             score = 100
-            message = "风速适宜（\(String(format: "%.1f", windSpeed) km/h）"
+            message = "风速适宜(\(String(format: "%.1f", windSpeed)) km/h)"
         } else if windSpeed <= moderateThreshold {
             score = 50
-            message = "风速偏大（\(String(format: "%.1f", windSpeed) km/h），注意避风"
+            message = "风速偏大(\(String(format: "%.1f", windSpeed)) km/h)，注意避风"
         } else {
             score = 0
-            message = "风力过大（\(String(format: "%.1f", windSpeed) km/h），不建议外出"
+            message = "风力过大(\(String(format: "%.1f", windSpeed)) km/h)，不建议外出"
         }
         
         return FactorScore(
