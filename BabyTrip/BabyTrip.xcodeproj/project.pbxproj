@@ -47,7 +47,6 @@
 		0CFF94FE699CFBDDE850A761 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		1D281529A6E4B51317B7B11F /* BabyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyProfile.swift; sourceTree = "<group>"; };
 		1D6E51C797B006F2094D6836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
-		2E8A9BC37D2A4B5A9BC32E8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		25C0993298325A291C74B01E /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
 		3B45669B5FB63CB2B721A3A6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		43C79B571DF4055E4FCC2A21 /* EvaluationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationResult.swift; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		AD77D0381E1B83612D5F70B3 /* BabyTripApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripApp.swift; sourceTree = "<group>"; };
 		C53C6A9F5FF408DFBB7D2659 /* BabyTrip.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BabyTrip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68F3FA35EEB3D35EAE61BEF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		EE7C487DAD204DD44879F891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F1C23CF593BF47261DC54ECE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F8121E2DDE7790743F83F17C /* BabyTripWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTripWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -102,7 +102,7 @@
 				F182283405DF05D7AAD5CB1C /* Network */,
 				EA8328736201727A7B0865FA /* RiskEvaluation */,
 				38D5D6D42EF763C8E953379D /* Storage */,
-				2E8A9BC37D2A4B5A9BC32E8A /* Info.plist */,
+				EE7C487DAD204DD44879F891 /* Info.plist */,
 			);
 			path = BabyTripShared;
 			sourceTree = "<group>";
@@ -343,6 +343,7 @@
 				INFOPLIST_FILE = BabyTrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip;
+				PRODUCT_MODULE_NAME = BabyTrip;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -352,6 +353,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = BabyTripWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripWatch;
+				PRODUCT_MODULE_NAME = BabyTripWatch;
 				SWIFT_VERSION = 5.0;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
@@ -371,6 +373,7 @@
 				INFOPLIST_FILE = BabyTrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip;
+				PRODUCT_MODULE_NAME = BabyTrip;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -381,6 +384,7 @@
 				INFOPLIST_FILE = BabyTripShared/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTripShared;
+				PRODUCT_MODULE_NAME = BabyTripShared;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -392,6 +396,7 @@
 				INFOPLIST_FILE = BabyTripShared/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTripShared;
+				PRODUCT_MODULE_NAME = BabyTripShared;
 				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
@@ -402,6 +407,7 @@
 			buildSettings = {
 				INFOPLIST_FILE = BabyTripWatch/Info.plist;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripWatch;
+				PRODUCT_MODULE_NAME = BabyTripWatch;
 				SWIFT_VERSION = 5.0;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
