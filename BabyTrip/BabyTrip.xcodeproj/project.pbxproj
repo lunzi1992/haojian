@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		040C81B0FD8C73200941FAA5 /* BabyTripShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 587204C9F0004A65FF65723E /* BabyTripShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		0C5DC45ACB4F82BDC6A6FF32 /* SetupProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44016AA52379B985FB5C67BD /* SetupProfileView.swift */; };
 		119AEF01E634A512C32763FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45669B5FB63CB2B721A3A6 /* ContentView.swift */; };
 		24C4833CF40A5AC6172C2BAF /* BabyTripShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587204C9F0004A65FF65723E /* BabyTripShared.framework */; };
@@ -16,7 +15,6 @@
 		6C61FF3FD319B38BC1DDC221 /* EvaluationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C79B571DF4055E4FCC2A21 /* EvaluationResult.swift */; };
 		95069C94928391271B8E0CBF /* BabyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D281529A6E4B51317B7B11F /* BabyProfile.swift */; };
 		992A102C6B9FAF3132BD0E35 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9DF6C989F6D6ACFDF35ED2 /* WeatherData.swift */; };
-		9972B41CD4F12C928C47F40D /* BabyTripShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 587204C9F0004A65FF65723E /* BabyTripShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		99DE62CBA4A2BF397376B1E5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F3FA35EEB3D35EAE61BEF /* SettingsView.swift */; };
 		A30454449EB098F073BB3ABB /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF94FE699CFBDDE850A761 /* UserSettings.swift */; };
 		BF53BBF36C453C10CF3CC144 /* BabyTripShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587204C9F0004A65FF65723E /* BabyTripShared.framework */; };
@@ -45,31 +43,6 @@
 		};
 /* End PBXContainerItemProxy section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		8D13EBD09805D039F0A058FB /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				040C81B0FD8C73200941FAA5 /* BabyTripShared.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		950D7194B66D2732AE49152D /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				9972B41CD4F12C928C47F40D /* BabyTripShared.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
 /* Begin PBXFileReference section */
 		0CFF94FE699CFBDDE850A761 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		1D281529A6E4B51317B7B11F /* BabyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyProfile.swift; sourceTree = "<group>"; };
@@ -78,7 +51,7 @@
 		3B45669B5FB63CB2B721A3A6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		43C79B571DF4055E4FCC2A21 /* EvaluationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationResult.swift; sourceTree = "<group>"; };
 		44016AA52379B985FB5C67BD /* SetupProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileView.swift; sourceTree = "<group>"; };
-		587204C9F0004A65FF65723E /* BabyTripShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BabyTripShared.framework; path = .framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		587204C9F0004A65FF65723E /* BabyTripShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BabyTripShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D866C54564C773A01E92BDB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		5DE6751804A22C0F33B5CFB0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		77CA01829732F897F3B1F6C0 /* RiskEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskEvaluator.swift; sourceTree = "<group>"; };
@@ -87,10 +60,10 @@
 		8F9DF6C989F6D6ACFDF35ED2 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
 		A5E5B63311DFE1C83EB874C8 /* BabyTripWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripWatchApp.swift; sourceTree = "<group>"; };
 		AD77D0381E1B83612D5F70B3 /* BabyTripApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripApp.swift; sourceTree = "<group>"; };
-		C53C6A9F5FF408DFBB7D2659 /* .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C53C6A9F5FF408DFBB7D2659 /* BabyTrip.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = BabyTrip.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C68F3FA35EEB3D35EAE61BEF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		F1C23CF593BF47261DC54ECE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
-		F8121E2DDE7790743F83F17C /* BabyTripWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BabyTripWatch.app; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F8121E2DDE7790743F83F17C /* BabyTripWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTripWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,7 +164,7 @@
 		D44E5F0AB8645FCF976214F3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				C53C6A9F5FF408DFBB7D2659 /* .app */,
+				C53C6A9F5FF408DFBB7D2659 /* BabyTrip.app */,
 				587204C9F0004A65FF65723E /* BabyTripShared.framework */,
 				F8121E2DDE7790743F83F17C /* BabyTripWatch.app */,
 			);
@@ -236,7 +209,6 @@
 			buildPhases = (
 				208ABCA9D866C871B6F4CAEB /* Sources */,
 				6B9ECD24D8780B53CA00FAF3 /* Frameworks */,
-				8D13EBD09805D039F0A058FB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -254,7 +226,6 @@
 			buildPhases = (
 				2BCB9484A9C63E5073D57198 /* Sources */,
 				72D177C0A85DB825BEB73654 /* Frameworks */,
-				950D7194B66D2732AE49152D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -263,7 +234,7 @@
 			);
 			name = BabyTrip;
 			productName = BabyTrip;
-			productReference = C53C6A9F5FF408DFBB7D2659 /* .app */;
+			productReference = C53C6A9F5FF408DFBB7D2659 /* BabyTrip.app */;
 			productType = "com.apple.product-type.application";
 		};
 		C0D47BE2F8BBD1FAC94B7D2E /* BabyTripShared */ = {
@@ -289,6 +260,8 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+				};
 			};
 			buildConfigurationList = 9850C03FCF6F2F70BFD0C207 /* Build configuration list for PBXProject "BabyTrip" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -365,11 +338,9 @@
 		0F0F731AC79A6452768A6855 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
 				INFOPLIST_FILE = BabyTrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -395,11 +366,9 @@
 		3F7BAF044F59D8CF5EEFF0BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
 				INFOPLIST_FILE = BabyTrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip;
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -409,7 +378,7 @@
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTripShared;
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -419,7 +388,7 @@
 			buildSettings = {
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTripShared;
-				SKIP_INSTALL = NO;
+				SKIP_INSTALL = YES;
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
