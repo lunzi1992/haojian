@@ -7,244 +7,270 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		19B3A4C52B6A8D8A00F14C56 /* BabyTripApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4C42B6A8D8A00F14C56 /* BabyTripApp.swift */; };
-		19B3A4C72B6A8D8B00F14C56 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4C62B6A8D8B00F14C56 /* SceneDelegate.swift */; };
-		19B3A4C82B6A8D8B00F14C56 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19B3A4C92B6A8D8B00F14C56 /* Info.plist */; };
-		19B3A4D12B6A8D9D00F14C56 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4D02B6A8D9D00F14C56 /* HomeView.swift */; };
-		19B3A4D32B6A8DA000F14C56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4D22B6A8DA000F14C56 /* ContentView.swift */; };
-		19B3A4D52B6A8DA200F14C56 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4D42B6A8DA200F14C56 /* SettingsView.swift */; };
-		19B3A4D72B6A8DA400F14C56 /* SetupProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4D62B6A8DA400F14C56 /* SetupProfileView.swift */; };
-		19B3A4E12B6A8DB400F14C56 /* BabyTripWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4E02B6A8DB400F14C56 /* BabyTripWatchApp.swift */; };
-		19B3A4E32B6A8DB600F14C56 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4E22B6A8DB600F14C56 /* ContentView.swift */; };
-		19B3A4E42B6A8DB600F14C56 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 19B3A4E52B6A8DB600F14C56 /* Info.plist */; };
-		19B3A4ED2B6A8DC400F14C56 /* RiskEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4EC2B6A8DC400F14C56 /* RiskEvaluator.swift */; };
-		19B3A4EF2B6A8DC600F14C56 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4EE2B6A8DC600F14C56 /* WeatherData.swift */; };
-		19B3A4F12B6A8DC800F14C56 /* BabyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4F02B6A8DC800F14C56 /* BabyProfile.swift */; };
-		19B3A4F32B6A8DCA00F14C56 /* EvaluationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4F22B6A8DCA00F14C56 /* EvaluationResult.swift */; };
-		19B3A4F52B6A8DCC00F14C56 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4F42B6A8DCC00F14C56 /* LocationManager.swift */; };
-		19B3A4F72B6A8DCE00F14C56 /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4F62B6A8DCE00F14C56 /* WeatherAPIClient.swift */; };
-		19B3A4F92B6A8DD000F14C56 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19B3A4F82B6A8DD000F14C56 /* UserSettings.swift */; };
+		040C81B0FD8C73200941FAA5 /* BabyTripShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 587204C9F0004A65FF65723E /* BabyTripShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0C5DC45ACB4F82BDC6A6FF32 /* SetupProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44016AA52379B985FB5C67BD /* SetupProfileView.swift */; };
+		119AEF01E634A512C32763FA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B45669B5FB63CB2B721A3A6 /* ContentView.swift */; };
+		24C4833CF40A5AC6172C2BAF /* BabyTripShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587204C9F0004A65FF65723E /* BabyTripShared.framework */; };
+		30154AB24CAD753AD3DCA11F /* BabyTripApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD77D0381E1B83612D5F70B3 /* BabyTripApp.swift */; };
+		69399BD1B33D324E2DF88F40 /* WeatherAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25C0993298325A291C74B01E /* WeatherAPIClient.swift */; };
+		6C61FF3FD319B38BC1DDC221 /* EvaluationResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C79B571DF4055E4FCC2A21 /* EvaluationResult.swift */; };
+		95069C94928391271B8E0CBF /* BabyProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D281529A6E4B51317B7B11F /* BabyProfile.swift */; };
+		992A102C6B9FAF3132BD0E35 /* WeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F9DF6C989F6D6ACFDF35ED2 /* WeatherData.swift */; };
+		9972B41CD4F12C928C47F40D /* BabyTripShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 587204C9F0004A65FF65723E /* BabyTripShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		99DE62CBA4A2BF397376B1E5 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C68F3FA35EEB3D35EAE61BEF /* SettingsView.swift */; };
+		A30454449EB098F073BB3ABB /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0CFF94FE699CFBDDE850A761 /* UserSettings.swift */; };
+		BF53BBF36C453C10CF3CC144 /* BabyTripShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 587204C9F0004A65FF65723E /* BabyTripShared.framework */; };
+		C1D3B1C288DBC9E8C5EC9F2E /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1C23CF593BF47261DC54ECE /* LocationManager.swift */; };
+		C3072483E1B1CE72E6118E51 /* RiskEvaluator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 77CA01829732F897F3B1F6C0 /* RiskEvaluator.swift */; };
+		C9B834CC15D0607CA8FF0E38 /* BabyTripWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E5B63311DFE1C83EB874C8 /* BabyTripWatchApp.swift */; };
+		CE661CCE1177B81C423403C9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6751804A22C0F33B5CFB0 /* HomeView.swift */; };
+		DB1C7F481F55BC9E2894F866 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D866C54564C773A01E92BDB /* SceneDelegate.swift */; };
+		E4A42A99A5D3C71025EA9BC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAA8B8DFEB2F75EC614C70 /* ContentView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		19B3A4C02B6A8D7E00F14C56 = {
+		655BA328397B056ADD844564 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 19B3A4B22B6A8D7E00F14C56 /* BabyTrip.xcodeproj */;
+			containerPortal = D84A083EB512EEC0ED782EB4 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 19B3A4BD2B6A8D7E00F14C56;
-			remoteInfo = BabyTrip;
+			remoteGlobalIDString = C0D47BE2F8BBD1FAC94B7D2E;
+			remoteInfo = BabyTripShared;
+		};
+		DB8CF1F91338C8D8634D3D34 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D84A083EB512EEC0ED782EB4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C0D47BE2F8BBD1FAC94B7D2E;
+			remoteInfo = BabyTripShared;
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		8D13EBD09805D039F0A058FB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				040C81B0FD8C73200941FAA5 /* BabyTripShared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		950D7194B66D2732AE49152D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				9972B41CD4F12C928C47F40D /* BabyTripShared.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		19B3A4AF2B6A8D7E00F14C56 /* BabyTrip.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = BabyTrip; sourceTree = BUILT_PRODUCTS_DIR; };
-		19B3A4B02B6A8D7E00F14C56 /* BabyTripWatch.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; path = BabyTripWatch; sourceTree = BUILT_PRODUCTS_DIR; };
-		19B3A4B12B6A8D7E00F14C56 /* BabyTripShared.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = BabyTripShared; sourceTree = BUILT_PRODUCTS_DIR; };
-		19B3A4C42B6A8D8A00F14C56 /* BabyTripApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrip/App/BabyTripApp.swift; sourceTree = "<group>"; };
-		19B3A4C62B6A8D8B00F14C56 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrip/App/SceneDelegate.swift; sourceTree = "<group>"; };
-		19B3A4C92B6A8D8B00F14C56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BabyTrip/Info.plist; sourceTree = "<group>"; };
-		19B3A4D02B6A8D9D00F14C56 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrip/Views/HomeView.swift; sourceTree = "<group>"; };
-		19B3A4D22B6A8DA000F14C56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrip/Views/ContentView.swift; sourceTree = "<group>"; };
-		19B3A4D42B6A8DA200F14C56 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrip/Views/SettingsView.swift; sourceTree = "<group>"; };
-		19B3A4D62B6A8DA400F14C56 /* SetupProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrip/Views/SetupProfileView.swift; sourceTree = "<group>"; };
-		19B3A4E02B6A8DB400F14C56 /* BabyTripWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripWatch/BabyTripWatchApp.swift; sourceTree = "<group>"; };
-		19B3A4E22B6A8DB600F14C56 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripWatch/Views/ContentView.swift; sourceTree = "<group>"; };
-		19B3A4E52B6A8DB600F14C56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = BabyTripWatch/Info.plist; sourceTree = "<group>"; };
-		19B3A4EC2B6A8DC400F14C56 /* RiskEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripShared/RiskEvaluation/RiskEvaluator.swift; sourceTree = "<group>"; };
-		19B3A4EE2B6A8DC600F14C56 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripShared/RiskEvaluation/WeatherData.swift; sourceTree = "<group>"; };
-		19B3A4F02B6A8DC800F14C56 /* BabyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripShared/RiskEvaluation/BabyProfile.swift; sourceTree = "<group>"; };
-		19B3A4F22B6A8DCA00F14C56 /* EvaluationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripShared/RiskEvaluation/EvaluationResult.swift; sourceTree = "<group>"; };
-		19B3A4F42B6A8DCC00F14C56 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripShared/Location/LocationManager.swift; sourceTree = "<group>"; };
-		19B3A4F62B6A8DCE00F14C56 /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripShared/Network/WeatherAPIClient.swift; sourceTree = "<group>"; };
-		19B3A4F82B6A8DD000F14C56 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripShared/Storage/UserSettings.swift; sourceTree = "<group>"; };
-		19B3A4FA2B6A8DD000F14C56 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		0CFF94FE699CFBDDE850A761 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		1D281529A6E4B51317B7B11F /* BabyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyProfile.swift; sourceTree = "<group>"; };
+		1D6E51C797B006F2094D6836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		25C0993298325A291C74B01E /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
+		3B45669B5FB63CB2B721A3A6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		43C79B571DF4055E4FCC2A21 /* EvaluationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationResult.swift; sourceTree = "<group>"; };
+		44016AA52379B985FB5C67BD /* SetupProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileView.swift; sourceTree = "<group>"; };
+		587204C9F0004A65FF65723E /* BabyTripShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = BabyTripShared.framework; path = .framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D866C54564C773A01E92BDB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		5DE6751804A22C0F33B5CFB0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		77CA01829732F897F3B1F6C0 /* RiskEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskEvaluator.swift; sourceTree = "<group>"; };
+		788BABA300F2A76BC2342CBA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		8CFAA8B8DFEB2F75EC614C70 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		8F9DF6C989F6D6ACFDF35ED2 /* WeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherData.swift; sourceTree = "<group>"; };
+		A5E5B63311DFE1C83EB874C8 /* BabyTripWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripWatchApp.swift; sourceTree = "<group>"; };
+		AD77D0381E1B83612D5F70B3 /* BabyTripApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTripApp.swift; sourceTree = "<group>"; };
+		C53C6A9F5FF408DFBB7D2659 /* .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C68F3FA35EEB3D35EAE61BEF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		F1C23CF593BF47261DC54ECE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		F8121E2DDE7790743F83F17C /* BabyTripWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = BabyTripWatch.app; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		19B3A4B72B6A8D7E00F14C56 /* Frameworks */ = {
+		6B9ECD24D8780B53CA00FAF3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C4833CF40A5AC6172C2BAF /* BabyTripShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		19B3A4C12B6A8D7E00F14C56 /* Frameworks */ = {
+		72D177C0A85DB825BEB73654 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		19B3A4CB2B6A8DC000F14C56 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+				BF53BBF36C453C10CF3CC144 /* BabyTripShared.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		19B3A4A52B6A8D7E00F14C56 = {
+		13B2B6CDCD03F8BDC5699993 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				19B3A4A62B6A8D7E00F14C56 /* BabyTrip */,
-				19B3A4AA2B6A8D7E00F14C56 /* BabyTripWatch */,
-				19B3A4AB2B6A8D7E00F14C56 /* BabyTripShared */,
-				19B3A4AD2B6A8D7E00F14C56 /* Products */,
-				19B3A4FA2B6A8DD000F14C56 /* README.md */,
+				3B45669B5FB63CB2B721A3A6 /* ContentView.swift */,
 			);
+			path = Views;
 			sourceTree = "<group>";
 		};
-		19B3A4A62B6A8D7E00F14C56 /* BabyTrip */ = {
+		1BCAE3A0D10B474A5F3C11C1 /* BabyTripShared */ = {
 			isa = PBXGroup;
 			children = (
-				19B3A4A72B6A8D7E00F14C56 /* App */,
-				19B3A4A82B6A8D7E00F14C56 /* Views */,
-				19B3A4C92B6A8D8B00F14C56 /* Info.plist */,
-			);
-			path = BabyTrip;
-			sourceTree = "<group>";
-		};
-		19B3A4A72B6A8D7E00F14C56 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				19B3A4C42B6A8D8A00F14C56 /* BabyTripApp.swift */,
-				19B3A4C62B6A8D8B00F14C56 /* SceneDelegate.swift */,
-			);
-			path = BabyTrip/App;
-			sourceTree = "<group>";
-		};
-		19B3A4A82B6A8D7E00F14C56 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				19B3A4D22B6A8DA000F14C56 /* ContentView.swift */,
-				19B3A4D02B6A8D9D00F14C56 /* HomeView.swift */,
-				19B3A4D42B6A8DA200F14C56 /* SettingsView.swift */,
-				19B3A4D62B6A8DA400F14C56 /* SetupProfileView.swift */,
-			);
-			path = BabyTrip/Views;
-			sourceTree = "<group>";
-		};
-		19B3A4AA2B6A8D7E00F14C56 /* BabyTripWatch */ = {
-			isa = PBXGroup;
-			children = (
-				19B3A4E02B6A8DB400F14C56 /* BabyTripWatchApp.swift */,
-				19B3A4AB2B6A8D7E00F14C56 /* Views */,
-				19B3A4E52B6A8DB600F14C56 /* Info.plist */,
-			);
-			path = BabyTripWatch;
-			sourceTree = "<group>";
-		};
-		19B3A4AC2B6A8D7E00F14C56 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				19B3A4E22B6A8DB600F14C56 /* ContentView.swift */,
-			);
-			path = BabyTripWatch/Views;
-			sourceTree = "<group>";
-		};
-		19B3A4AB2B6A8D7E00F14C56 /* BabyTripShared */ = {
-			isa = PBXGroup;
-			children = (
-				19B3A4AC2B6A8D7E00F14C56 /* RiskEvaluation */,
-				19B3A4AE2B6A8D7E00F14C56 /* Location */,
-				19B3A4B02B6A8D7E00F14C56 /* Network */,
-				19B3A4B22B6A8D7E00F14C56 /* Storage */,
+				77DC6AB1F8F995D31002F55B /* Location */,
+				F182283405DF05D7AAD5CB1C /* Network */,
+				EA8328736201727A7B0865FA /* RiskEvaluation */,
+				38D5D6D42EF763C8E953379D /* Storage */,
 			);
 			path = BabyTripShared;
 			sourceTree = "<group>";
 		};
-		19B3A4AC2B6A8D7E00F14C56 /* RiskEvaluation */ = {
+		38D5D6D42EF763C8E953379D /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				19B3A4F02B6A8DC800F14C56 /* BabyProfile.swift */,
-				19B3A4F22B6A8DCA00F14C56 /* EvaluationResult.swift */,
-				19B3A4EC2B6A8DC400F14C56 /* RiskEvaluator.swift */,
-				19B3A4EE2B6A8DC600F14C56 /* WeatherData.swift */,
+				0CFF94FE699CFBDDE850A761 /* UserSettings.swift */,
 			);
-			path = BabyTripShared/RiskEvaluation;
+			path = Storage;
 			sourceTree = "<group>";
 		};
-		19B3A4AE2B6A8D7E00F14C56 /* Location */ = {
+		54E5F1C9185AEE5E2D6D132C /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				19B3A4F42B6A8DCC00F14C56 /* LocationManager.swift */,
+				8CFAA8B8DFEB2F75EC614C70 /* ContentView.swift */,
+				5DE6751804A22C0F33B5CFB0 /* HomeView.swift */,
+				C68F3FA35EEB3D35EAE61BEF /* SettingsView.swift */,
+				44016AA52379B985FB5C67BD /* SetupProfileView.swift */,
 			);
-			path = BabyTripShared/Location;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		19B3A4B02B6A8D7E00F14C56 /* Network */ = {
+		77DC6AB1F8F995D31002F55B /* Location */ = {
 			isa = PBXGroup;
 			children = (
-				19B3A4F62B6A8DCE00F14C56 /* WeatherAPIClient.swift */,
+				F1C23CF593BF47261DC54ECE /* LocationManager.swift */,
 			);
-			path = BabyTripShared/Network;
+			path = Location;
 			sourceTree = "<group>";
 		};
-		19B3A4B22B6A8D7E00F14C56 /* Storage */ = {
+		8D501EAF28A45630B0B13960 /* BabyTripWatch */ = {
 			isa = PBXGroup;
 			children = (
-				19B3A4F82B6A8DD000F14C56 /* UserSettings.swift */,
+				13B2B6CDCD03F8BDC5699993 /* Views */,
+				A5E5B63311DFE1C83EB874C8 /* BabyTripWatchApp.swift */,
+				788BABA300F2A76BC2342CBA /* Info.plist */,
 			);
-			path = BabyTripShared/Storage;
+			path = BabyTripWatch;
 			sourceTree = "<group>";
 		};
-		19B3A4AD2B6A8D7E00F14C56 /* Products */ = {
+		99FB755F579695288FEA4931 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				19B3A4AF2B6A8D7E00F14C56 /* BabyTrip.app */,
-				19B3A4B02B6A8D7E00F14C56 /* BabyTripWatch.app */,
-				19B3A4B12B6A8D7E00F14C56 /* BabyTripShared.framework */,
+				AD77D0381E1B83612D5F70B3 /* BabyTripApp.swift */,
+				5D866C54564C773A01E92BDB /* SceneDelegate.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		B232DD8102DB627858ACE465 /* BabyTrip */ = {
+			isa = PBXGroup;
+			children = (
+				99FB755F579695288FEA4931 /* App */,
+				54E5F1C9185AEE5E2D6D132C /* Views */,
+				1D6E51C797B006F2094D6836 /* Info.plist */,
+			);
+			path = BabyTrip;
+			sourceTree = "<group>";
+		};
+		D44E5F0AB8645FCF976214F3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				C53C6A9F5FF408DFBB7D2659 /* .app */,
+				587204C9F0004A65FF65723E /* BabyTripShared.framework */,
+				F8121E2DDE7790743F83F17C /* BabyTripWatch.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		DF8214A840CAEFAE70514864 = {
+			isa = PBXGroup;
+			children = (
+				B232DD8102DB627858ACE465 /* BabyTrip */,
+				1BCAE3A0D10B474A5F3C11C1 /* BabyTripShared */,
+				8D501EAF28A45630B0B13960 /* BabyTripWatch */,
+				D44E5F0AB8645FCF976214F3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		EA8328736201727A7B0865FA /* RiskEvaluation */ = {
+			isa = PBXGroup;
+			children = (
+				1D281529A6E4B51317B7B11F /* BabyProfile.swift */,
+				43C79B571DF4055E4FCC2A21 /* EvaluationResult.swift */,
+				77CA01829732F897F3B1F6C0 /* RiskEvaluator.swift */,
+				8F9DF6C989F6D6ACFDF35ED2 /* WeatherData.swift */,
+			);
+			path = RiskEvaluation;
+			sourceTree = "<group>";
+		};
+		F182283405DF05D7AAD5CB1C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				25C0993298325A291C74B01E /* WeatherAPIClient.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		19B3A4BD2B6A8D7E00F14C56 /* BabyTrip */ = {
+		42371EF4DB117D33DE05ADFC /* BabyTripWatch */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 19B3A50B2B6A8DD200F14C56 /* Build configuration list for PBXNativeTarget "BabyTrip" */;
+			buildConfigurationList = 7F0A57B87F21F934D20E1EE7 /* Build configuration list for PBXNativeTarget "BabyTripWatch" */;
 			buildPhases = (
-				19B3A4B42B6A8D7E00F14C56 /* Sources */,
-				19B3A4B72B6A8D7E00F14C56 /* Frameworks */,
-				19B3A4BA2B6A8D7E00F14C56 /* Resources */,
+				208ABCA9D866C871B6F4CAEB /* Sources */,
+				6B9ECD24D8780B53CA00FAF3 /* Frameworks */,
+				8D13EBD09805D039F0A058FB /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				19B3A4BF2B6A8D7E00F14C56 /* PBXTargetDependency */,
-			);
-			name = BabyTrip;
-			productName = BabyTrip;
-			productReference = 19B3A4AF2B6A8D7E00F14C56 /* BabyTrip.app */;
-			productType = com.apple.product-type.application;
-		};
-		19B3A4C22B6A8D7E00F14C56 /* BabyTripWatch */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 19B3A5102B6A8DD200F14C56 /* Build configuration list for PBXNativeTarget "BabyTripWatch" */;
-			buildPhases = (
-				19B3A4B92B6A8D7E00F14C56 /* Sources */,
-				19B3A4C12B6A8D7E00F14C56 /* Frameworks */,
-				19B3A4BE2B6A8D7E00F14C56 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				19B3A4C32B6A8D8200F14C56 /* PBXTargetDependency */,
+				8A87985290F5F9F5E8083D0D /* PBXTargetDependency */,
 			);
 			name = BabyTripWatch;
 			productName = BabyTripWatch;
-			productReference = 19B3A4B02B6A8D7E00F14C56 /* BabyTripWatch.app */;
-			productType = "com.apple.product-type.application.watchapp";
+			productReference = F8121E2DDE7790743F83F17C /* BabyTripWatch.app */;
+			productType = "com.apple.product-type.application";
 		};
-		19B3A4CC2B6A8DC000F14C56 /* BabyTripShared */ = {
+		BBA9BFB0845E7F9E3132C40E /* BabyTrip */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 19B3A5172B6A8DD400F14C56 /* Build configuration list for PBXNativeTarget "BabyTripShared" */;
+			buildConfigurationList = 2A18DF7BB0C1CAEE6C547006 /* Build configuration list for PBXNativeTarget "BabyTrip" */;
 			buildPhases = (
-				19B3A4CE2B6A8DC000F14C56 /* Sources */,
-				19B3A4CB2B6A8DC000F14C56 /* Frameworks */,
+				2BCB9484A9C63E5073D57198 /* Sources */,
+				72D177C0A85DB825BEB73654 /* Frameworks */,
+				950D7194B66D2732AE49152D /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				061FA967DBE79FB8CDA1934F /* PBXTargetDependency */,
+			);
+			name = BabyTrip;
+			productName = BabyTrip;
+			productReference = C53C6A9F5FF408DFBB7D2659 /* .app */;
+			productType = "com.apple.product-type.application";
+		};
+		C0D47BE2F8BBD1FAC94B7D2E /* BabyTripShared */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4E88BC7E4BC42B38F9DFDBF5 /* Build configuration list for PBXNativeTarget "BabyTripShared" */;
+			buildPhases = (
+				069DCE65320833CFF057B607 /* Sources */,
 			);
 			buildRules = (
 			);
@@ -252,608 +278,210 @@
 			);
 			name = BabyTripShared;
 			productName = BabyTripShared;
-			productReference = 19B3A4B12B6A8D7E00F14C56 /* BabyTripShared.framework */;
-			productType = com.apple.product-type.framework;
+			productReference = 587204C9F0004A65FF65723E /* BabyTripShared.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		19B3A4B22B6A8D7E00F14C56 /* BabyTrip.xcodeproj */ = {
+		D84A083EB512EEC0ED782EB4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1500;
-				ORGANIZATIONNAME = BabyTrip;
-				TargetAttributes = {
-					19B3A4BD2B6A8D7E00F14C56 = {
-						CreatedOnToolsVersion = 15.0;
-						DevelopmentTeam = "";
-					};
-					19B3A4C22B6A8D7E00F14C56 = {
-						CreatedOnToolsVersion = 15.0;
-						DevelopmentTeam = "";
-					};
-					19B3A4CC2B6A8DC000F14C56 = {
-						CreatedOnToolsVersion = 15.0;
-						DevelopmentTeam = "";
-					};
-				};
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1430;
 			};
-			buildConfigurationList = 19B3A5002B6A8DD000F14C56 /* Build configuration list for PBXProject "BabyTrip" */;
-			closeAfterAddingPackages = 1;
-			compatibilityVersion = "Xcode 14.0 compatible";
+			buildConfigurationList = 9850C03FCF6F2F70BFD0C207 /* Build configuration list for PBXProject "BabyTrip" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				Base,
 				en,
-				Base.lproj,
 			);
-			mainGroup = 19B3A4A52B6A8D7E00F14C56;
-			productRefGroup = 19B3A4AD2B6A8D7E00F14C56 /* Products */;
+			mainGroup = DF8214A840CAEFAE70514864;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				19B3A4BD2B6A8D7E00F14C56 /* BabyTrip */,
-				19B3A4C22B6A8D7E00F14C56 /* BabyTripWatch */,
-				19B3A4CC2B6A8DC000F14C56 /* BabyTripShared */,
+				BBA9BFB0845E7F9E3132C40E /* BabyTrip */,
+				C0D47BE2F8BBD1FAC94B7D2E /* BabyTripShared */,
+				42371EF4DB117D33DE05ADFC /* BabyTripWatch */,
 			);
 		};
 /* End PBXProject section */
 
-/* Begin PBXResourcesBuildPhase section */
-		19B3A4BA2B6A8D7E00F14C56 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				19B3A4C82B6A8D8B00F14C56 /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		19B3A4BE2B6A8D7E00F14C56 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				19B3A4E42B6A8DB600F14C56 /* Info.plist in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXResourcesBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
-		19B3A4B42B6A8D7E00F14C56 /* Sources */ = {
+		069DCE65320833CFF057B607 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19B3A4C52B6A8D8A00F14C56 /* BabyTripApp.swift in Sources */,
-				19B3A4C72B6A8D8B00F14C56 /* SceneDelegate.swift in Sources */,
-				19B3A4D12B6A8D9D00F14C56 /* HomeView.swift in Sources */,
-				19B3A4D32B6A8DA000F14C56 /* ContentView.swift in Sources */,
-				19B3A4D52B6A8DA200F14C56 /* SettingsView.swift in Sources */,
-				19B3A4D72B6A8DA400F14C56 /* SetupProfileView.swift in Sources */,
+				95069C94928391271B8E0CBF /* BabyProfile.swift in Sources */,
+				6C61FF3FD319B38BC1DDC221 /* EvaluationResult.swift in Sources */,
+				C1D3B1C288DBC9E8C5EC9F2E /* LocationManager.swift in Sources */,
+				C3072483E1B1CE72E6118E51 /* RiskEvaluator.swift in Sources */,
+				A30454449EB098F073BB3ABB /* UserSettings.swift in Sources */,
+				69399BD1B33D324E2DF88F40 /* WeatherAPIClient.swift in Sources */,
+				992A102C6B9FAF3132BD0E35 /* WeatherData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		19B3A4B92B6A8D7E00F14C56 /* Sources */ = {
+		208ABCA9D866C871B6F4CAEB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19B3A4E12B6A8DB400F14C56 /* BabyTripWatchApp.swift in Sources */,
-				19B3A4E32B6A8DB600F14C56 /* ContentView.swift in Sources */,
+				C9B834CC15D0607CA8FF0E38 /* BabyTripWatchApp.swift in Sources */,
+				119AEF01E634A512C32763FA /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		19B3A4CE2B6A8DC000F14C56 /* Sources */ = {
+		2BCB9484A9C63E5073D57198 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				19B3A4ED2B6A8DC400F14C56 /* RiskEvaluator.swift in Sources */,
-				19B3A4EF2B6A8DC600F14C56 /* WeatherData.swift in Sources */,
-				19B3A4F12B6A8DC800F14C56 /* BabyProfile.swift in Sources */,
-				19B3A4F32B6A8DCA00F14C56 /* EvaluationResult.swift in Sources */,
-				19B3A4F52B6A8DCC00F14C56 /* LocationManager.swift in Sources */,
-				19B3A4F72B6A8DCE00F14C56 /* WeatherAPIClient.swift in Sources */,
-				19B3A4F92B6A8DD000F14C56 /* UserSettings.swift in Sources */,
+				30154AB24CAD753AD3DCA11F /* BabyTripApp.swift in Sources */,
+				E4A42A99A5D3C71025EA9BC0 /* ContentView.swift in Sources */,
+				CE661CCE1177B81C423403C9 /* HomeView.swift in Sources */,
+				DB1C7F481F55BC9E2894F866 /* SceneDelegate.swift in Sources */,
+				99DE62CBA4A2BF397376B1E5 /* SettingsView.swift in Sources */,
+				0C5DC45ACB4F82BDC6A6FF32 /* SetupProfileView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		19B3A4BF2B6A8D7E00F14C56 = {
+		061FA967DBE79FB8CDA1934F /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 19B3A4CC2B6A8DC000F14C56 /* BabyTripShared */;
+			target = C0D47BE2F8BBD1FAC94B7D2E /* BabyTripShared */;
+			targetProxy = 655BA328397B056ADD844564 /* PBXContainerItemProxy */;
 		};
-		19B3A4C32B6A8D8200F14C56 = {
+		8A87985290F5F9F5E8083D0D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 19B3A4CC2B6A8DC000F14C56 /* BabyTripShared */;
+			target = C0D47BE2F8BBD1FAC94B7D2E /* BabyTripShared */;
+			targetProxy = DB8CF1F91338C8D8634D3D34 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		19B3A5022B6A8DD000F14C56 /* Debug */ = {
+		0F0F731AC79A6452768A6855 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPLETION = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
 				INFOPLIST_FILE = BabyTrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACH_O_TYPE = mh_execute;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
-		19B3A5032B6A8DD000F14C56 /* Release */ = {
+		152A5410C6E67C53F3229709 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPLETION = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = BabyTrip/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACH_O_TYPE = mh_execute;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Release;
-		};
-		19B3A5082B6A8DD200F14C56 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPLETION = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINED_MODULES_STABLE_NAME = YES;
-				DEFINES_MODULE = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				INSTALL_PATH = "$(LOCAL_KERNEL)";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACH_O_TYPE = staticlib;
-				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				TARGET_NAME = BabyTripShared;
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Debug;
-		};
-		19B3A5092B6A8DD200F14C56 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEasdfgasing = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMma = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPLETION = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINED_MODULES_STABLE_NAME = YES;
-				DEFINES_MODULE = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				INSTALL_PATH = "$(LOCAL_KERNEL)";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACH_O_TYPE = staticlib;
-				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Release;
-		};
-		19B3A50C2B6A8DD200F14C56 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPLETION = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				INFOPLIST_FILE = BabyTrip/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACH_O_TYPE = mh_execute;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Debug;
-		};
-		19B3A50D2B6A8DD200F14C56 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEasing = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMma = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONversion = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPletion = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSend = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = BabyTrip/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACH_O_TYPE = mh_execute;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Release;
-		};
-		19B3A5112B6A8DD200F14C56 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEasing = YES;
-				CLANG_WARN_BOOL_CONversion = YES;
-				CLANG_WARN_COMma = YES;
-				CLANG_WARN_CONSTANT_CONversion = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMplementations = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONversion = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONversion = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONversion = YES;
-				CLANG_WARN_OBJC_IMplicit_REtain_SElf = YES;
-				CLANG_WARN_OBJC_LITERAL_CONversion = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPletion = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
 				INFOPLIST_FILE = BabyTripWatch/Info.plist;
-				KNOWLEDGE_BUNDLE_CREATION_TARGET_NAME = "";
-				MACH_O_TYPE = mh_execute;
-				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripWatch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
 				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-				WATCHOS_DEPLOYMENT_TARGET = 10.0;
-			};
-			name = Debug;
-		};
-		19B3A5122B6A8DD200F14C56 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPLETION = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INFOPLIST_FILE = BabyTripWatch/Info.plist;
-				MACH_O_TYPE = mh_execute;
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripWatch;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
-		19B3A5182B6A8DD400F14C56 /* Debug */ = {
+		2436C7A1CA36492150B4FC18 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPLETION = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEFINED_MODULES_STABLE_NAME = YES;
-				DEFINES_MODULE = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				INSTALL_PATH = "$(LOCAL_KERNEL)";
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACH_O_TYPE = staticlib;
-				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
-		19B3A5192B6A8DD400F14C56 /* Release */ = {
+		3F7BAF044F59D8CF5EEFF0BE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECTIFICATION_COMPILATION = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "c++17";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_RANGE_LOOP_AUTOCOMPLETION = YES;
-				CLANG_WARN_STRict_prototypes = YES;
-				CLANG_WARN_suspicious_MOVE = YES;
-				CLANG_WARN_unreachable_code = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				DEBUG_INFORmation_format = "dwarf-with-dsym";
-				DEFINED_MODULES_stable_NAME = YES;
-				DEFINES_MODULE = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				INSTALL_PATH = "$(LOCAL_KERNEL)";
+				"DEVELOPMENT_TEAM[sdk=macosx*]" = "";
+				INFOPLIST_FILE = BabyTrip/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
-				MACH_O_TYPE = staticlib;
-				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripShared;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = iphoneos;
+				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip;
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=macosx*]" = "";
 				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Release;
+		};
+		41D6BFD3E4935701CFF715E7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTripShared;
+				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		5F10EC3DFD2442130E335EB8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTripShared;
+				SKIP_INSTALL = NO;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		A31A021869A29724CC96505D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = BabyTripWatch/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripWatch;
+				SWIFT_VERSION = 5.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		C8A5BB493C3634BA5C497037 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
-/* Begin XCBuildConfigurationList section */
-		19B3A5002B6A8DD000F14C56 /* Build configuration list for PBXProject "BabyTrip" */ = {
-			isa = XCBuildConfigurationList;
+/* Begin XCConfigurationList section */
+		2A18DF7BB0C1CAEE6C547006 /* Build configuration list for PBXNativeTarget "BabyTrip" */ = {
+			isa = XCConfigurationList;
 			buildConfigurations = (
-				19B3A5022B6A8DD000F14C56 /* Debug */,
-				19B3A5032B6A8DD000F14C56 /* Release */,
+				0F0F731AC79A6452768A6855 /* Debug */,
+				3F7BAF044F59D8CF5EEFF0BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
-		19B3A50B2B6A8DD200F14C56 /* Build configuration list for PBXNativeTarget "BabyTrip" */ = {
-			isa = XCBuildConfigurationList;
+		4E88BC7E4BC42B38F9DFDBF5 /* Build configuration list for PBXNativeTarget "BabyTripShared" */ = {
+			isa = XCConfigurationList;
 			buildConfigurations = (
-				19B3A50C2B6A8DD200F14C56 /* Debug */,
-				19B3A50D2B6A8DD200F14C56 /* Release */,
+				41D6BFD3E4935701CFF715E7 /* Debug */,
+				5F10EC3DFD2442130E335EB8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
-		19B3A5102B6A8DD200F14C56 /* Build configuration list for PBXNativeTarget "BabyTripWatch" */ = {
-			isa = XCBuildConfigurationList;
+		7F0A57B87F21F934D20E1EE7 /* Build configuration list for PBXNativeTarget "BabyTripWatch" */ = {
+			isa = XCConfigurationList;
 			buildConfigurations = (
-				19B3A5112B6A8DD200F14C56 /* Debug */,
-				19B3A5122B6A8DD200F14C56 /* Release */,
+				A31A021869A29724CC96505D /* Debug */,
+				152A5410C6E67C53F3229709 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
-		19B3A5172B6A8DD400F14C56 /* Build configuration list for PBXNativeTarget "BabyTripShared" */ = {
-			isa = XCBuildConfigurationList;
+		9850C03FCF6F2F70BFD0C207 /* Build configuration list for PBXProject "BabyTrip" */ = {
+			isa = XCConfigurationList;
 			buildConfigurations = (
-				19B3A5182B6A8DD400F14C56 /* Debug */,
-				19B3A5192B6A8DD400F14C56 /* Release */,
+				2436C7A1CA36492150B4FC18 /* Debug */,
+				C8A5BB493C3634BA5C497037 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
 		};
-/* End XCBuildConfigurationList section */
+/* End XCConfigurationList section */
 	};
-	rootObject = 19B3A4B22B6A8D7E00F14C56 /* BabyTrip.xcodeproj */;
+	rootObject = D84A083EB512EEC0ED782EB4 /* Project object */;
 }
