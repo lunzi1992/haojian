@@ -41,6 +41,7 @@ public class WeatherAPIClient: ObservableObject {
     
     public struct Main: Codable {
         public let temp: Double
+        public let feels_like: Double
         public let humidity: Double
     }
     
@@ -84,6 +85,7 @@ public class WeatherAPIClient: ObservableObject {
         
         return WeatherData(
             temperature: weather.main.temp,
+            feelsLike: weather.main.feels_like,
             uvIndex: uv,
             aqi: aqi,
             windSpeed: weather.wind.speed * 3.6, // 转换为 km/h
@@ -154,6 +156,40 @@ public class WeatherAPIClient: ObservableObject {
         case 5: return 300  // Very Poor
         default: return 0
         }
+    }
+    
+    public struct ForecastResponse: Codable {
+        public let list: [ForecastItem]
+    }
+    
+    public struct ForecastItem: Codable {
+        public let dt: TimeInterval
+        public let main: Main
+        public let wind: Wind
+        public let weather: [Weather]
+        
+        public var date: Date {
+            return Date(timeIntervalSince1970: dt)
+        }
+    }
+    
+    public func fetchForecast(
+        latitude: Double,
+        longitude: Double
+    ) async throws -> [ForecastItem] {
+        let urlString = "\(baseURL)/forecast?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=metric&cnt=8"
+        guard let url = URL(string: urlString) else {
+            throw APIError.invalidURL
+        }
+        
+        let (data, response) = try await URLSession.shared.data(from: url)
+        guard let httpResponse = response as? HTTPURLResponse,
+              httpResponse.statusCode == 200 else {
+            throw APIError.invalidResponse
+        }
+        
+        let result = try JSONDecoder().decode(ForecastResponse.self, from: data)
+        return result.list
     }
     
     public enum APIError: Error {

@@ -8,29 +8,55 @@
 import Foundation
 
 public struct EvaluationResult: Codable, Equatable {
+    /// 总体风险分数（V2: 累加制，0-100+）
+    public let overallScore: Int
+    
     /// 整体风险等级
     public let riskLevel: RiskLevel
     
-    /// 各因素评分 (0-100，分数越高越安全)
-    public let factorScores: [FactorScore]
+    /// V2: 各因素风险贡献（用于原因解释）
+    public let factorContributions: [RiskFactorContribution]
     
-    /// 建议文本
-    public let recommendation: String
+    /// V2: 行动建议列表
+    public let recommendations: [String]
     
-    /// 总体安全分数
-    public var overallScore: Int {
-        let total = factorScores.map { $0.score }.reduce(0, +)
-        return factorScores.isEmpty ? 0 : total / factorScores.count
+    /// V2: 人话总结
+    public let humanSummary: String
+    
+    /// V2: 最佳外出时间（可选）
+    public let bestTimeRange: TimeRange?
+    
+    /// 兼容旧版：建议文本（取第一条建议或人话总结）
+    public var recommendation: String {
+        return humanSummary
+    }
+    
+    /// 兼容旧版：各因素评分（转换后的安全分数）
+    public var factorScores: [FactorScore] {
+        return factorContributions.map { contribution in
+            let safetyScore = max(0, 100 - contribution.points * 3)
+            return FactorScore(
+                factor: contribution.factor,
+                score: safetyScore,
+                message: contribution.reasons.first ?? ""
+            )
+        }
     }
     
     public init(
+        overallScore: Int,
         riskLevel: RiskLevel,
-        factorScores: [FactorScore],
-        recommendation: String
+        factorContributions: [RiskFactorContribution],
+        recommendations: [String],
+        humanSummary: String,
+        bestTimeRange: TimeRange?
     ) {
+        self.overallScore = overallScore
         self.riskLevel = riskLevel
-        self.factorScores = factorScores
-        self.recommendation = recommendation
+        self.factorContributions = factorContributions
+        self.recommendations = recommendations
+        self.humanSummary = humanSummary
+        self.bestTimeRange = bestTimeRange
     }
 }
 
@@ -77,20 +103,26 @@ public enum RiskLevel: Int, Codable, CaseIterable {
 
 public enum RiskFactor: String, Codable, CaseIterable {
     case temperature
+    case feelsLike
     case uv
     case aqi
     case wind
+    case humidity
     
     public var displayName: String {
         switch self {
         case .temperature:
             return "温度"
+        case .feelsLike:
+            return "体感温度"
         case .uv:
             return "紫外线"
         case .aqi:
             return "空气质量"
         case .wind:
             return "风速"
+        case .humidity:
+            return "湿度"
         }
     }
 }

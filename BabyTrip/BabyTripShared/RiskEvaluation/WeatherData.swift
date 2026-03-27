@@ -11,6 +11,9 @@ public struct WeatherData: Codable, Equatable {
     /// 当前温度（摄氏度）
     public let temperature: Double
     
+    /// 体感温度（摄氏度）
+    public let feelsLike: Double
+    
     /// 紫外线指数 (0-11+)
     public let uvIndex: Double
     
@@ -28,6 +31,7 @@ public struct WeatherData: Codable, Equatable {
     
     public init(
         temperature: Double,
+        feelsLike: Double,
         uvIndex: Double,
         aqi: Int,
         windSpeed: Double,
@@ -35,6 +39,7 @@ public struct WeatherData: Codable, Equatable {
         humidity: Double
     ) {
         self.temperature = temperature
+        self.feelsLike = feelsLike
         self.uvIndex = uvIndex
         self.aqi = aqi
         self.windSpeed = windSpeed
@@ -45,6 +50,7 @@ public struct WeatherData: Codable, Equatable {
     /// 默认空数据
     public static let empty = WeatherData(
         temperature: 0,
+        feelsLike: 0,
         uvIndex: 0,
         aqi: 0,
         windSpeed: 0,
