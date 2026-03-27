@@ -91,6 +91,12 @@ struct HomeView: View {
             refreshData()
         }
         .onAppear {
+            if locationManager.location == nil {
+                locationManager.requestLocation()
+            }
+            refreshData()
+        }
+        .onChange(of: locationManager.location) { _ in
             refreshData()
         }
         .background(Color(.systemGroupedBackground))
@@ -228,7 +234,7 @@ struct HomeView: View {
     
     private func detailedScoresCard(_ result: EvaluationResult) -> some View {
         VStack(spacing: 12) {
-            Text "各项评分"
+            Text("各项评分")
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
             

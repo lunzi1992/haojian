@@ -33,11 +33,11 @@ struct SetupProfileView: View {
                 }
                 
                 Section {
-                    let age = Calendar.current.dateComponents([.month], from: birthDate, to: Date()).month ?? 0
+                    let ageText = calculateAgeText(from: birthDate)
                     HStack {
                         Text("当前年龄")
                         Spacer()
-                        Text("\(age) 个月")
+                        Text(ageText)
                             .foregroundColor(.secondary)
                     }
                     
@@ -60,6 +60,29 @@ struct SetupProfileView: View {
                 }
             }
             .navigationTitle("欢迎")
+        }
+    }
+    
+    private func calculateAgeText(from birthDate: Date) -> String {
+        let calendar = Calendar.current
+        let now = Date()
+        
+        let components = calendar.dateComponents([.year, .month, .day], from: birthDate, to: now)
+        
+        if let years = components.year, years > 0 {
+            if let months = components.month, months > 0 {
+                return "\(years) 岁 \(months) 个月"
+            }
+            return "\(years) 岁"
+        } else if let months = components.month, months > 0 {
+            if let days = components.day, days > 0 {
+                return "\(months) 个月 \(days) 天"
+            }
+            return "\(months) 个月"
+        } else if let days = components.day, days > 0 {
+            return "\(days) 天"
+        } else {
+            return "今天出生"
         }
     }
 }

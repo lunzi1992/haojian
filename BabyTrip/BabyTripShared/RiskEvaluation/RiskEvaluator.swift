@@ -81,7 +81,7 @@ public final class RiskEvaluator {
         
         if temperature >= adjustedMin && temperature <= adjustedMax {
             score = 100
-            message = "温度适宜(\(String(format: "%.1f°C", temperature))"
+            message = "温度适宜(\(String(format: "%.1f°C", temperature)))"
         } else {
             let deviation = abs(temperature - ((idealMin + idealMax) / 2))
             let adjustedDeviation = deviation * ageFactor
