@@ -14,13 +14,39 @@ public class UserSettings: ObservableObject {
     private let userDefaults = UserDefaults.standard
     
     @Published public private(set) var babyProfile: BabyProfile?
+    @Published public private(set) var preferences: UserPreferences
     
     private let babyProfileKey = "BabyProfile"
+    private let preferencesKey = "UserPreferences"
     
     private var cancellables = Set<AnyCancellable>()
     
     private init() {
+        preferences = UserSettings.loadPreferences()
         loadProfile()
+    }
+    
+    public func savePreferences(_ preferences: UserPreferences) {
+        self.preferences = preferences
+        do {
+            let data = try JSONEncoder().encode(preferences)
+            userDefaults.set(data, forKey: preferencesKey)
+        } catch {
+            print("Error saving user preferences: \(error)")
+        }
+    }
+    
+    private static func loadPreferences() -> UserPreferences {
+        guard let data = UserDefaults.standard.data(forKey: "UserPreferences") else {
+            return UserPreferences()
+        }
+        
+        do {
+            return try JSONDecoder().decode(UserPreferences.self, from: data)
+        } catch {
+            print("Error loading user preferences: \(error)")
+            return UserPreferences()
+        }
     }
     
     public func saveBabyProfile(_ profile: BabyProfile) {
