@@ -210,52 +210,121 @@ public class WeatherAPIClient: ObservableObject {
             throw APIError.httpError(statusCode: httpResponse.statusCode)
         }
         
-        let result = try JSONDecoder().decode(QWeatherNowResponseV7.self, from: data)
-        guard result.code == "200" else {
-            print("[WeatherAPI] API Error Code: \(result.code)")
-            throw APIError.apiError(code: result.code)
+        do {
+            let result = try JSONDecoder().decode(QWeatherNowResponseV7.self, from: data)
+            guard result.code == "200" else {
+                print("[WeatherAPI] API Error Code: \(result.code)")
+                throw APIError.apiError(code: result.code)
+            }
+            print("[WeatherAPI] Decoded successfully, temp: \(result.now.temp)")
+            return result.now
+        } catch let decodingError as DecodingError {
+            print("[WeatherAPI] JSON Decode Error: \(decodingError)")
+            switch decodingError {
+            case .keyNotFound(let key, let context):
+                print("[WeatherAPI] Missing key: \(key), path: \(context.codingPath)")
+            case .typeMismatch(let type, let context):
+                print("[WeatherAPI] Type mismatch: \(type), path: \(context.codingPath)")
+            default:
+                print("[WeatherAPI] Other decode error: \(decodingError)")
+            }
+            throw APIError.invalidResponse
+        } catch {
+            print("[WeatherAPI] Unknown error: \(error)")
+            throw APIError.invalidResponse
         }
-        return result.now
     }
     
     private func fetchQWeatherAirV7(locationId: String) async throws -> Int {
-        let urlString = "\(baseURL)/air/now?location=\(locationId)&key=\(apiKey)"
+        // 使用 Air Quality API v1，通过经纬度查询
+        let geoURL = "https://qv3qqrnxxu.re.qweatherapi.com/geo/v2/city/lookup?location=\(locationId)&key=\(apiKey)"
+        guard let geoUrl = URL(string: geoURL) else {
+            return 0
+        }
+        
+        let (geoData, _) = try await urlSession.data(from: geoUrl)
+        let geoResult = try? JSONDecoder().decode(GeoLookupResponse.self, from: geoData)
+        guard let location = geoResult?.location?.first,
+              let lat = Double(location.lat),
+              let lon = Double(location.lon) else {
+            return 0
+        }
+        
+        let urlString = "https://qv3qqrnxxu.re.qweatherapi.com/airquality/v1/current/\(lat.rounded(toPlaces: 2))/\(lon.rounded(toPlaces: 2))?key=\(apiKey)"
+        print("[WeatherAPI] Air Quality URL: \(urlString)")
         guard let url = URL(string: urlString) else {
-            throw APIError.invalidURL
+            return 0
         }
         
         let (data, response) = try await urlSession.data(from: url)
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
-            throw APIError.invalidResponse
-        }
-        
-        let result = try JSONDecoder().decode(QWeatherAirResponseV7.self, from: data)
-        guard result.code == "200", let airNow = result.now else {
+        guard let httpResponse = response as? HTTPURLResponse else {
             return 0
         }
-        return Int(airNow.aqi) ?? 0
+        
+        print("[WeatherAPI] Air Quality HTTP Status: \(httpResponse.statusCode)")
+        let responseString = String(data: data, encoding: .utf8) ?? "无法解码"
+        print("[WeatherAPI] Air Quality Response: \(responseString)")
+        
+        guard httpResponse.statusCode == 200 else {
+            return 0
+        }
+        
+        do {
+            let result = try JSONDecoder().decode(AirQualityResponseV1.self, from: data)
+            // 优先使用中国 AQI (cn-mee)，找不到就用第一个
+            if let cnIndex = result.indexes.first(where: { $0.code == "cn-mee" }) {
+                return cnIndex.aqi
+            } else if let firstIndex = result.indexes.first {
+                return firstIndex.aqi
+            }
+            return 0
+        } catch {
+            print("[WeatherAPI] Air Quality JSON Decode Error: \(error)")
+            return 0
+        }
+    }
+    
+    // Air Quality v1 数据模型
+    public struct AirQualityResponseV1: Codable {
+        public let indexes: [AQIndexV1]
+    }
+    
+    public struct AQIndexV1: Codable {
+        public let code: String
+        public let aqi: Int
     }
     
     private func fetchQWeatherUVV7(locationId: String) async throws -> Double {
         // v7: 使用天气指数 API，type=5 表示紫外线指数
         let urlString = "\(baseURL)/indices/1d?location=\(locationId)&type=5&key=\(apiKey)"
+        print("[WeatherAPI] UV URL: \(urlString)")
         guard let url = URL(string: urlString) else {
             throw APIError.invalidURL
         }
         
         let (data, response) = try await urlSession.data(from: url)
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
+        guard let httpResponse = response as? HTTPURLResponse else {
             throw APIError.invalidResponse
         }
         
-        let result = try JSONDecoder().decode(QWeatherIndicesResponseV7.self, from: data)
-        guard result.code == "200", let daily = result.daily?.first else {
+        print("[WeatherAPI] UV HTTP Status: \(httpResponse.statusCode)")
+        let responseString = String(data: data, encoding: .utf8) ?? "无法解码"
+        print("[WeatherAPI] UV Response: \(responseString)")
+        
+        guard httpResponse.statusCode == 200 else {
             return 0
         }
-        // level 字段包含紫外线等级数字
-        return Double(daily.level ?? "0") ?? 0
+        
+        do {
+            let result = try JSONDecoder().decode(QWeatherIndicesResponseV7.self, from: data)
+            guard result.code == "200", let daily = result.daily?.first else {
+                return 0
+            }
+            return Double(daily.level ?? "0") ?? 0
+        } catch {
+            print("[WeatherAPI] UV JSON Decode Error: \(error)")
+            return 0
+        }
     }
     
     // MARK: - V4: 和风天气预报 (Web API v7)
@@ -266,22 +335,37 @@ public class WeatherAPIClient: ObservableObject {
         
         // v7: 24小时预报 API
         let urlString = "\(baseURL)/weather/24h?location=\(locationId)&key=\(apiKey)"
+        print("[WeatherAPI] Forecast URL: \(urlString)")
         
         guard let url = URL(string: urlString) else {
             throw APIError.invalidURL
         }
         
         let (data, response) = try await urlSession.data(from: url)
-        guard let httpResponse = response as? HTTPURLResponse,
-              httpResponse.statusCode == 200 else {
+        guard let httpResponse = response as? HTTPURLResponse else {
             throw APIError.invalidResponse
         }
         
-        let result = try JSONDecoder().decode(QWeatherHourlyResponseV7.self, from: data)
-        guard result.code == "200" else {
+        print("[WeatherAPI] Forecast HTTP Status: \(httpResponse.statusCode)")
+        let responseString = String(data: data, encoding: .utf8) ?? "无法解码"
+        print("[WeatherAPI] Forecast Response: \(responseString)")
+        
+        guard httpResponse.statusCode == 200 else {
             return []
         }
-        return result.hourly ?? []
+        
+        do {
+            let result = try JSONDecoder().decode(QWeatherHourlyResponseV7.self, from: data)
+            guard result.code == "200" else {
+                print("[WeatherAPI] Forecast API Error Code: \(result.code)")
+                return []
+            }
+            print("[WeatherAPI] Forecast decoded, count: \(result.hourly?.count ?? 0)")
+            return result.hourly ?? []
+        } catch {
+            print("[WeatherAPI] Forecast JSON Decode Error: \(error)")
+            return []
+        }
     }
     
     public struct QWeatherHourlyResponseV7: Codable {
