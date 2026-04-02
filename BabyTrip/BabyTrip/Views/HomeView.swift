@@ -16,9 +16,12 @@ class HomeViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage: String?
     @Published var locationName: String?
+    @Published var weatherAlert: WeatherAlert?     // V3: 天气提醒
+    @Published var lastUpdateTime: Date?             // V3: 数据更新时间
     
     private let weatherAPIClient = WeatherAPIClient()
     private let riskEvaluator = RiskEvaluator()
+    private let weatherAlertManager = WeatherAlertManager.shared
     private let geocoder = CLGeocoder()
     
     // MARK: - 缓存
@@ -27,6 +30,20 @@ class HomeViewModel: ObservableObject {
     private var cachedLocation: CLLocation?
     private var lastFetchTime: Date?
     private let cacheDuration: TimeInterval = 15 * 60 // 15分钟
+    
+    // V3: 缓存配置
+    public var cacheConfig: CacheConfiguration {
+        return CacheConfiguration(
+            duration: cacheDuration,
+            lastUpdate: lastUpdateTime,
+            isValid: isCacheValid
+        )
+    }
+    
+    public var isCacheValid: Bool {
+        guard let lastTime = lastFetchTime else { return false }
+        return Date().timeIntervalSince(lastTime) < cacheDuration
+    }
     
     func loadWeatherAndEvaluate(location: CLLocation, baby: BabyProfile) async {
         // 检查缓存是否有效（15分钟内且位置变化小于1公里）
@@ -68,13 +85,14 @@ class HomeViewModel: ObservableObject {
             var result = riskEvaluator.evaluate(baby: baby, weather: weather)
             
             // 4. 计算最佳外出时间
-            let forecastData = forecastItems.map { item in
-                (
-                    date: item.date,
-                    temperature: item.main.temp,
-                    feelsLike: item.main.feels_like,
-                    humidity: item.main.humidity,
-                    windSpeed: item.wind.speed * 3.6
+            let forecastData = forecastItems.compactMap { item -> (date: Date, temperature: Double, feelsLike: Double, humidity: Double, windSpeed: Double)? in
+                guard let date = item.date else { return nil }
+                return (
+                    date: date,
+                    temperature: item.temperature,
+                    feelsLike: item.temperature, // 和风天气小时预报没有体感温度，使用温度代替
+                    humidity: item.humidityValue,
+                    windSpeed: item.windSpeedValue
                 )
             }
             
@@ -103,10 +121,21 @@ class HomeViewModel: ObservableObject {
             self.cachedLocation = location
             self.lastFetchTime = Date()
             
+            // V3: 检查天气提醒
+            if let alert = self.weatherAlertManager.checkWeatherChange(
+                currentWeather: weather,
+                babyAgeInMonths: baby.ageInMonths
+            ) {
+                DispatchQueue.main.async {
+                    self.weatherAlert = alert
+                }
+            }
+            
             DispatchQueue.main.async {
                 self.weatherData = weather
                 self.evaluationResult = result
                 self.locationName = locationName
+                self.lastUpdateTime = Date()
                 self.isLoading = false
             }
         } catch {
@@ -123,6 +152,22 @@ class HomeViewModel: ObservableObject {
         cachedResult = nil
         cachedLocation = nil
         lastFetchTime = nil
+        lastUpdateTime = nil
+    }
+}
+
+// MARK: - V3: 缓存配置
+
+struct CacheConfiguration {
+    let duration: TimeInterval
+    let lastUpdate: Date?
+    let isValid: Bool
+    
+    var formattedUpdateTime: String {
+        guard let lastUpdate = lastUpdate else { return "未更新" }
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        return "更新于 \(formatter.string(from: lastUpdate))"
     }
 }
 
@@ -211,8 +256,13 @@ struct HomeView: View {
     
     private func v2ResultView(_ result: EvaluationResult, _ weather: WeatherData) -> some View {
         VStack(spacing: 16) {
-            // 1. 城市 + 当前时间
+            // 1. 城市 + 当前时间 + 更新时间
             locationAndTimeView
+            
+            // V3: 天气提醒卡片
+            if let alert = viewModel.weatherAlert {
+                weatherAlertCard(alert)
+            }
             
             // 2. 风险等级大标题
             riskLevelCard(result)
@@ -239,7 +289,10 @@ struct HomeView: View {
                 babyInfoCard(baby)
             }
             
-            // 9. 免责声明
+            // 9. V3: 更新时间提示
+            updateTimeView
+            
+            // 10. 免责声明
             disclaimerView
         }
     }
@@ -256,6 +309,102 @@ struct HomeView: View {
             Text(currentTimeString)
                 .font(.caption)
                 .foregroundColor(.secondary)
+        }
+    }
+    
+    // MARK: - V3: 天气提醒卡片
+    
+    private func weatherAlertCard(_ alert: WeatherAlert) -> some View {
+        VStack(alignment: .leading, spacing: 10) {
+            HStack {
+                Image(systemName: alertIcon(for: alert.highestLevel))
+                    .foregroundColor(alertColor(for: alert.highestLevel))
+                    .font(.title3)
+                Text(alert.notificationTitle)
+                    .font(.headline)
+                    .foregroundColor(alertColor(for: alert.highestLevel))
+                Spacer()
+                Button(action: {
+                    viewModel.weatherAlert = nil
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.secondary)
+                        .font(.caption)
+                }
+            }
+            
+            VStack(alignment: .leading, spacing: 6) {
+                ForEach(alert.conditions) { condition in
+                    HStack(alignment: .top, spacing: 6) {
+                        Circle()
+                            .fill(alertColor(for: condition.level))
+                            .frame(width: 6, height: 6)
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(condition.message)
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                            Text(condition.recommendation)
+                                .font(.caption)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+            }
+        }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(alertColor(for: alert.highestLevel).opacity(0.1))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(alertColor(for: alert.highestLevel).opacity(0.3), lineWidth: 1)
+                )
+        )
+    }
+    
+    private func alertIcon(for level: AlertLevel) -> String {
+        switch level {
+        case .danger:
+            return "exclamationmark.triangle.fill"
+        case .warning:
+            return "exclamationmark.circle.fill"
+        case .caution:
+            return "info.circle.fill"
+        }
+    }
+    
+    private func alertColor(for level: AlertLevel) -> Color {
+        switch level {
+        case .danger:
+            return .red
+        case .warning:
+            return .orange
+        case .caution:
+            return .yellow
+        }
+    }
+    
+    // MARK: - V3: 更新时间视图
+    
+    private var updateTimeView: some View {
+        HStack {
+            Image(systemName: "clock.arrow.circlepath")
+                .foregroundColor(.secondary)
+                .font(.caption)
+            Text(viewModel.cacheConfig.formattedUpdateTime)
+                .font(.caption)
+                .foregroundColor(.secondary)
+            if viewModel.isCacheValid {
+                HStack(spacing: 4) {
+                    Circle()
+                        .fill(Color.green)
+                        .frame(width: 6, height: 6)
+                    Text("缓存有效")
+                        .font(.caption)
+                        .foregroundColor(.green)
+                }
+            }
+            Spacer()
         }
     }
     
@@ -455,15 +604,58 @@ struct HomeView: View {
     
     private func weatherOverviewCard(_ weather: WeatherData) -> some View {
         VStack(alignment: .leading, spacing: 12) {
-            Text("当前天气")
-                .font(.caption)
+            HStack {
+                Text("当前天气")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                Spacer()
+                // V3: 天气状况图标
+                Image(systemName: weatherConditionIcon(weather.condition))
+                    .font(.title2)
+                    .foregroundColor(weatherConditionColor(weather.condition))
+            }
+            
+            // V3: 天气状况标签
+            Text(weather.condition)
+                .font(.subheadline)
                 .foregroundColor(.secondary)
             
             LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 2), spacing: 12) {
-                weatherItem(title: "温度", value: "\(Int(weather.temperature))°C", icon: "thermometer")
-                weatherItem(title: "体感", value: "\(Int(weather.feelsLike))°C", icon: "thermometer.sun")
-                weatherItem(title: "紫外线", value: "\(Int(weather.uvIndex))", icon: "sun.max")
-                weatherItem(title: "AQI", value: "\(weather.aqi)", icon: "wind")
+                // V3: 优先体感温度（如果用户偏好）
+                if userSettings.preferences.prioritizeFeelsLike {
+                    weatherItemWithColor(
+                        title: "体感温度",
+                        value: "\(Int(weather.feelsLike))°C",
+                        icon: "thermometer.sun",
+                        color: temperatureColor(weather.feelsLike)
+                    )
+                    weatherItem(title: "实际温度", value: "\(Int(weather.temperature))°C", icon: "thermometer")
+                } else {
+                    weatherItemWithColor(
+                        title: "温度",
+                        value: "\(Int(weather.temperature))°C",
+                        icon: "thermometer",
+                        color: temperatureColor(weather.temperature)
+                    )
+                    weatherItem(title: "体感", value: "\(Int(weather.feelsLike))°C", icon: "thermometer.sun")
+                }
+                
+                // V3: 紫外线带颜色指示
+                weatherItemWithColor(
+                    title: "紫外线",
+                    value: "\(Int(weather.uvIndex))",
+                    icon: "sun.max",
+                    color: uvColor(weather.uvIndex)
+                )
+                
+                // V3: AQI带颜色指示
+                weatherItemWithColor(
+                    title: "AQI",
+                    value: "\(weather.aqi)",
+                    icon: "wind",
+                    color: aqiColor(weather.aqi)
+                )
+                
                 weatherItem(title: "风速", value: "\(Int(weather.windSpeed)) km/h", icon: "wind")
                 weatherItem(title: "湿度", value: "\(Int(weather.humidity))%", icon: "drop")
             }
@@ -471,6 +663,93 @@ struct HomeView: View {
         .padding()
         .background(Color(.systemBackground))
         .cornerRadius(12)
+    }
+    
+    // MARK: - V3: 天气图标和颜色函数
+    
+    private func weatherConditionIcon(_ condition: String) -> String {
+        let lowercased = condition.lowercased()
+        if lowercased.contains("晴") || lowercased.contains("sun") {
+            return "sun.max.fill"
+        } else if lowercased.contains("多云") || lowercased.contains("cloud") {
+            return "cloud.sun.fill"
+        } else if lowercased.contains("阴") || lowercased.contains("overcast") {
+            return "cloud.fill"
+        } else if lowercased.contains("雨") || lowercased.contains("rain") {
+            return "cloud.rain.fill"
+        } else if lowercased.contains("雪") || lowercased.contains("snow") {
+            return "snowflake"
+        } else if lowercased.contains("雾") || lowercased.contains("fog") || lowercased.contains("霾") {
+            return "cloud.fog.fill"
+        } else if lowercased.contains("雷") || lowercased.contains("thunder") {
+            return "cloud.bolt.fill"
+        }
+        return "sun.max.fill"
+    }
+    
+    private func weatherConditionColor(_ condition: String) -> Color {
+        let lowercased = condition.lowercased()
+        if lowercased.contains("晴") || lowercased.contains("sun") {
+            return .orange
+        } else if lowercased.contains("雨") || lowercased.contains("rain") {
+            return .blue
+        } else if lowercased.contains("雪") || lowercased.contains("snow") {
+            return .cyan
+        } else if lowercased.contains("雾") || lowercased.contains("fog") || lowercased.contains("霾") {
+            return .gray
+        } else if lowercased.contains("雷") || lowercased.contains("thunder") {
+            return .purple
+        }
+        return .yellow
+    }
+    
+    private func temperatureColor(_ temp: Double) -> Color {
+        switch temp {
+        case ..<5: return .blue
+        case 5..<15: return .cyan
+        case 15..<25: return .green
+        case 25..<32: return .orange
+        default: return .red
+        }
+    }
+    
+    private func uvColor(_ uv: Double) -> Color {
+        switch uv {
+        case ..<3: return .green
+        case 3..<6: return .yellow
+        case 6..<8: return .orange
+        case 8..<11: return .red
+        default: return .purple
+        }
+    }
+    
+    private func aqiColor(_ aqi: Int) -> Color {
+        switch aqi {
+        case ..<50: return .green
+        case 50..<100: return .yellow
+        case 100..<150: return .orange
+        case 150..<200: return .red
+        case 200..<300: return .purple
+        default: return .red
+        }
+    }
+    
+    private func weatherItemWithColor(title: String, value: String, icon: String, color: Color) -> some View {
+        HStack {
+            Image(systemName: icon)
+                .foregroundColor(color)
+                .font(.caption)
+            VStack(alignment: .leading, spacing: 2) {
+                Text(title)
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                Text(value)
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundColor(color)
+            }
+            Spacer()
+        }
     }
     
     private func weatherItem(title: String, value: String, icon: String) -> some View {

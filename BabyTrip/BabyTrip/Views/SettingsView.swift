@@ -11,6 +11,7 @@ import BabyTripShared
 struct SettingsView: View {
     @EnvironmentObject var userSettings: UserSettings
     @State private var showingEditProfile = false
+    @State private var showingPreferences = false
     @State private var babyName = ""
     @State private var birthDate = Date()
     
@@ -35,7 +36,7 @@ struct SettingsView: View {
                     HStack {
                         Text("年龄分类")
                         Spacer()
- Text(profile.ageCategory.description)
+                        Text(profile.ageCategory.description)
                             .foregroundColor(.secondary)
                     }
                 }
@@ -48,20 +49,49 @@ struct SettingsView: View {
                 }
             }
             
+            // V3: 偏好设置入口
+            Section("个性化设置") {
+                Button("外出偏好设置") {
+                    showingPreferences = true
+                }
+                
+                HStack {
+                    Text("天气提醒")
+                    Spacer()
+                    Text(userSettings.preferences.enableWeatherAlerts ? "已开启" : "已关闭")
+                        .foregroundColor(.secondary)
+                }
+                
+                HStack {
+                    Text("优先体感温度")
+                    Spacer()
+                    Text(userSettings.preferences.prioritizeFeelsLike ? "是" : "否")
+                        .foregroundColor(.secondary)
+                }
+            }
+            
             Section("关于") {
                 HStack {
                     Text("版本")
                     Spacer()
-                    Text("1.0")
+                    Text("3.0")
                         .foregroundColor(.secondary)
                 }
                 
-                Link("获取 OpenWeatherMap API Key", destination: URL(string: "https://openweathermap.org/api")!)
+                Text("使用和风天气 API 提供精准天气数据")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Link("获取和风天气 API Key", destination: URL(string: "https://www.qweather.com/")!)
             }
         }
         .navigationTitle("设置")
         .sheet(isPresented: $showingEditProfile) {
             editProfileSheet
+        }
+        .sheet(isPresented: $showingPreferences) {
+            PreferencesView()
+                .environmentObject(userSettings)
         }
     }
     

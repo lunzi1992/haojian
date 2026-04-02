@@ -24,6 +24,9 @@
 		C9B834CC15D0607CA8FF0E38 /* BabyTripWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5E5B63311DFE1C83EB874C8 /* BabyTripWatchApp.swift */; };
 		CE661CCE1177B81C423403C9 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE6751804A22C0F33B5CFB0 /* HomeView.swift */; };
 		E4A42A99A5D3C71025EA9BC0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFAA8B8DFEB2F75EC614C70 /* ContentView.swift */; };
+		F3E4A5B6C7D8901234567891 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E2F3A4B5C6789012345678 /* PreferencesView.swift */; };
+		B2C3D4E5F6789012345678A0 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6789012345679 /* UserPreferences.swift */; };
+		D4E5F6A7B8C9012345678A1 /* WeatherAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6A7B8C9D0123456789012 /* WeatherAlertManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,12 +48,15 @@
 
 /* Begin PBXFileReference section */
 		0CFF94FE699CFBDDE850A761 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
+		A1B2C3D4E5F6789012345679 /* UserPreferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPreferences.swift; sourceTree = "<group>"; };
 		1D281529A6E4B51317B7B11F /* BabyProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyProfile.swift; sourceTree = "<group>"; };
 		1D6E51C797B006F2094D6836 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		25C0993298325A291C74B01E /* WeatherAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIClient.swift; sourceTree = "<group>"; };
+		E5F6A7B8C9D0123456789012 /* WeatherAlertManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAlertManager.swift; sourceTree = "<group>"; };
 		3B45669B5FB63CB2B721A3A6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		43C79B571DF4055E4FCC2A21 /* EvaluationResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EvaluationResult.swift; sourceTree = "<group>"; };
 		44016AA52379B985FB5C67BD /* SetupProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupProfileView.swift; sourceTree = "<group>"; };
+		D1E2F3A4B5C6789012345678 /* PreferencesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesView.swift; sourceTree = "<group>"; };
 		587204C9F0004A65FF65723E /* BabyTripShared.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BabyTripShared.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DE6751804A22C0F33B5CFB0 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		77CA01829732F897F3B1F6C0 /* RiskEvaluator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RiskEvaluator.swift; sourceTree = "<group>"; };
@@ -115,6 +121,7 @@
 				F182283405DF05D7AAD5CB1C /* Network */,
 				EA8328736201727A7B0865FA /* RiskEvaluation */,
 				38D5D6D42EF763C8E953379D /* Storage */,
+				B3C4D5E6F7890123456789ABC /* Notification */,
 				EE7C487DAD204DD44879F891 /* Info.plist */,
 			);
 			path = BabyTripShared;
@@ -124,6 +131,7 @@
 			isa = PBXGroup;
 			children = (
 				0CFF94FE699CFBDDE850A761 /* UserSettings.swift */,
+				A1B2C3D4E5F6789012345679 /* UserPreferences.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -135,6 +143,7 @@
 				5DE6751804A22C0F33B5CFB0 /* HomeView.swift */,
 				C68F3FA35EEB3D35EAE61BEF /* SettingsView.swift */,
 				44016AA52379B985FB5C67BD /* SetupProfileView.swift */,
+				D1E2F3A4B5C6789012345678 /* PreferencesView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -212,6 +221,14 @@
 				25C0993298325A291C74B01E /* WeatherAPIClient.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		B3C4D5E6F7890123456789ABC /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				E5F6A7B8C9D0123456789012 /* WeatherAlertManager.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -305,7 +322,9 @@
 				C1D3B1C288DBC9E8C5EC9F2E /* LocationManager.swift in Sources */,
 				C3072483E1B1CE72E6118E51 /* RiskEvaluator.swift in Sources */,
 				A30454449EB098F073BB3ABB /* UserSettings.swift in Sources */,
+				B2C3D4E5F6789012345678A0 /* UserPreferences.swift in Sources */,
 				69399BD1B33D324E2DF88F40 /* WeatherAPIClient.swift in Sources */,
+				D4E5F6A7B8C9012345678A1 /* WeatherAlertManager.swift in Sources */,
 				992A102C6B9FAF3132BD0E35 /* WeatherData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,8 +345,9 @@
 				30154AB24CAD753AD3DCA11F /* BabyTripApp.swift in Sources */,
 				E4A42A99A5D3C71025EA9BC0 /* ContentView.swift in Sources */,
 				CE661CCE1177B81C423403C9 /* HomeView.swift in Sources */,
-					99DE62CBA4A2BF397376B1E5 /* SettingsView.swift in Sources */,
+				99DE62CBA4A2BF397376B1E5 /* SettingsView.swift in Sources */,
 				0C5DC45ACB4F82BDC6A6FF32 /* SetupProfileView.swift in Sources */,
+				F3E4A5B6C7D8901234567891 /* PreferencesView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,9 +393,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = BabyTripWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripWatch;
 				PRODUCT_MODULE_NAME = BabyTripWatch;
+				PRODUCT_NAME = BabyTripWatch;
+				SDKROOT = watchos;
 				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
@@ -429,7 +456,9 @@
 				PRODUCT_NAME = BabyTripShared;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator";
 				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2,4";
 			};
 			name = Debug;
 		};
@@ -452,7 +481,9 @@
 				PRODUCT_NAME = BabyTripShared;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator watchos watchsimulator";
 				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = "1,2,4";
 			};
 			name = Release;
 		};
@@ -460,9 +491,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				INFOPLIST_FILE = BabyTripWatch/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.babytrip.BabyTrip.BabyTripWatch;
 				PRODUCT_MODULE_NAME = BabyTripWatch;
+				PRODUCT_NAME = BabyTripWatch;
+				SDKROOT = watchos;
 				SWIFT_VERSION = 5.9;
+				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
