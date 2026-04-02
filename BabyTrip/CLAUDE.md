@@ -57,20 +57,33 @@ The app uses OpenWeatherMap API for weather data.
 
 ## Core Architecture
 
-### Risk Evaluation Engine
+### Risk Evaluation Engine (V2)
 
-The heart of the app is `BabyTripShared/RiskEvaluation/RiskEvaluator.swift`. It evaluates four weather factors:
+The heart of the app is `BabyTripShared/RiskEvaluation/RiskEvaluator.swift`. V2 uses a **risk accumulation scoring system** with six weather factors:
 
-1. **Temperature**: Ideal range 18-26°C, adjusted by age sensitivity
-2. **UV Index**: Safe threshold < 3 for babies, adjusted by age
-3. **Air Quality (AQI)**: Safe < 100, stricter for younger babies
-4. **Wind Speed**: Safe < 15 km/h, adjusted by age
+1. **Temperature**: >32°C +25 / <5°C +30
+2. **Feels Like (体感温度)**: >35°C +20 / <0°C +15 *(new in V2)*
+3. **UV Index**: ≥7 +25 / ≥4 +10
+4. **Air Quality (AQI)**: >100 +30 / >50 +15
+5. **Wind Speed**: >25 km/h +10
+6. **Humidity**: >90% +15 / >80% +10 / <30% +5 *(new in V2)*
 
-Age sensitivity factor (from `BabyProfile.AgeCategory`):
-- Newborn (0-3mo): 1.5x stricter thresholds
-- 3-6 months: 1.3x
-- 6-12 months: 1.1x
-- 1+ year: 1.0x (baseline)
+Age weight multiplier (risk amplification):
+- Newborn (0-3mo): **×1.5** (more sensitive)
+- 3-6 months: **×1.2**
+- 6-12 months: **×1.0** (baseline)
+
+V2 output includes:
+- Overall risk score → risk level (safe/caution/unsafe)
+- Factor contributions with reasons
+- Actionable recommendations for each risk factor
+- Human-readable summary (in Chinese)
+- Best time range recommendation for outing (based on hourly forecast)
+
+Risk level thresholds:
+- 0-30: 🟢 Safe to go out
+- 31-60: 🟡 Caution required
+- >60: 🔴 Not recommended
 
 ### Data Flow
 
