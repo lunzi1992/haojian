@@ -11,7 +11,7 @@
 - 📍 自动定位获取当前位置天气，支持手动选择城市
 - 🧮 **六维综合评估**: 温度 + 体感温度 + 紫外线 + 空气质量 + 风速 + 湿度
 - 💡 **智能解读**: 人话总结 + 原因明细 + 可执行行动建议
-- ⏰ 推荐**今日最佳外出时间段**，帮你选对时间出门
+- ⏰ **智能推荐今日最佳外出时间段**，分析未来48小时天气预报帮你选对时间出门
 - ⚖️ **年龄权重算法**: 0-3个月 ×1.5倍风险权重（更敏感），月龄越小越严格
 - 💾 数据全部本地存储，无需登录，保护隐私
 - 🔄 下拉刷新快速更新天气数据
@@ -22,36 +22,35 @@
 ```
 BabyTrip/
 ├── BabyTrip.xcodeproj          # Xcode 项目文件
-├── project.yml                 # 项目配置 (XcodeGen)
 ├── BabyTrip/                   # iOS App 主目标
 │   ├── App/
-│   │   ├── BabyTripApp.swift
-│   │   └── BabyTripApp.entitlements
+│   │   └── BabyTripApp.swift       # App 入口，环境对象注入
 │   ├── Views/
-│   │   ├── HomeView.swift          # 主页 - 展示评估结果
+│   │   ├── ContentView.swift       # 主容器，判断是否需要设置
+│   │   ├── HomeView.swift          # 主页 - 展示评估结果 (V2 全新布局)
 │   │   ├── SetupProfileView.swift  # 初次设置向导
-│   │   ├── SettingsView.swift      # 设置页
-│   │   └── ContentView.swift
-│   ├── Info.plist
-├── BabyTripWatch/              # watchOS App 目标
-│   ├── BabyTripWatchApp.swift
-│   ├── Views/
-│   │   └── ContentView.swift  # 手表端主页，快速查看结论
+│   │   └── SettingsView.swift      # 设置页 - 修改宝宝信息
 │   └── Info.plist
-├── BabyTripShared/             # 共享逻辑 Framework
+├── BabyTripWatch/              # watchOS App 目标
+│   ├── BabyTripWatchApp.swift      # 手表 App 入口
+│   ├── Views/
+│   │   └── ContentView.swift       # 手表端主页，快速查看结论
+│   └── Info.plist
+├── BabyTripShared/             # 共享逻辑 Framework (iOS + watchOS 共享)
 │   ├── RiskEvaluation/        # 🧮 核心风险评估引擎
-│   │   ├── RiskEvaluator.swift     # 主评估逻辑
+│   │   ├── RiskEvaluator.swift     # 主评估逻辑 + 最佳时段计算
 │   │   ├── WeatherData.swift       # 天气数据结构
-│   │   ├── BabyProfile.swift       # 宝宝信息 & 年龄分类
-│   │   └── EvaluationResult.swift  # 评估结果结构
+│   │   ├── BabyProfile.swift       # 宝宝信息 & 年龄分类 & 权重计算
+│   │   └── EvaluationResult.swift  # 评估结果结构（含推荐最佳时段）
 │   ├── Location/
-│   │   └── LocationManager.swift   # 定位管理
+│   │   └── LocationManager.swift   # 定位权限请求和管理
 │   ├── Network/
-│   │   └── WeatherAPIClient.swift  # OpenWeatherMap API 客户端
+│   │   └── WeatherAPIClient.swift  # OpenWeatherMap API 客户端（当前 + 预报）
 │   └── Storage/
-│       └── UserSettings.swift      # 用户设置存储
+│       └── UserSettings.swift      # 用户设置存储（@AppStorage）
 ├── DEBUG.md                    # 调试运行手册
-└── README.md
+├── .gitignore
+└── README.md                  # 本文档
 ```
 
 ## 环境要求
@@ -128,10 +127,11 @@ V2 不仅给结论，还给你完整的决策辅助：
 
 ## API 说明
 
-当前使用 [OpenWeatherMap](https://openweathermap.org/api) One Call API 3.0 获取天气数据，V2 需要:
-- 注册免费账号获取 API Key
+当前使用 [OpenWeatherMap](https://openweathermap.org/api) 获取天气数据：
+- **One Call API 3.0**: 当前天气 + 48小时预报（用于计算最佳外出时段）
+- **Air Pollution API**: 空气质量指数 (AQI)
 - 需要获取的数据：温度、体感温度、紫外线指数、空气质量指数、风速、湿度
-- 免费额度足够个人开发使用
+- 免费额度足够个人开发使用（每天 1000 次调用）
 
 ## 作者
 
