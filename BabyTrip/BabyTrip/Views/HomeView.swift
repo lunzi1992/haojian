@@ -19,6 +19,11 @@ class HomeViewModel: ObservableObject {
     @Published var weatherAlert: WeatherAlert?     // V3: 天气提醒
     @Published var lastUpdateTime: Date?             // V3: 数据更新时间
     
+    // V4: 新增属性
+    @Published var recommendedTimeSlots: [RecommendedTimeSlot] = []
+    @Published var clothingAdvice: ClothingAdvice?
+    @Published var yesterdayComparison: WeatherComparison?
+    
     private let weatherAPIClient = WeatherAPIClient()
     private let riskEvaluator = RiskEvaluator()
     private let weatherAlertManager = WeatherAlertManager.shared
@@ -69,55 +74,31 @@ class HomeViewModel: ObservableObject {
         }
         
         do {
-            // 1. 获取当前天气
-            let weather = try await weatherAPIClient.fetchWeather(
+            // V4: 使用带缓存和推荐的新 API
+            let result = try await weatherAPIClient.fetchWeatherWithCache(
                 latitude: location.coordinate.latitude,
-                longitude: location.coordinate.longitude
+                longitude: location.coordinate.longitude,
+                forceRefresh: false
             )
             
-            // 2. 获取未来天气预报（用于计算最佳外出时间）
-            let forecastItems = try await weatherAPIClient.fetchForecast(
-                latitude: location.coordinate.latitude,
-                longitude: location.coordinate.longitude
-            )
+            let weather = result.weather
+            let hourly = result.hourly
+            let timeSlots = result.timeSlots
+            let clothing = result.clothing
             
-            // 3. 评估当前天气
-            var result = riskEvaluator.evaluate(baby: baby, weather: weather)
+            // 2. 评估当前天气
+            let evaluation = riskEvaluator.evaluate(baby: baby, weather: weather)
             
-            // 4. 计算最佳外出时间
-            let forecastData = forecastItems.compactMap { item -> (date: Date, temperature: Double, feelsLike: Double, humidity: Double, windSpeed: Double)? in
-                guard let date = item.date else { return nil }
-                return (
-                    date: date,
-                    temperature: item.temperature,
-                    feelsLike: item.temperature, // 和风天气小时预报没有体感温度，使用温度代替
-                    humidity: item.humidityValue,
-                    windSpeed: item.windSpeedValue
-                )
-            }
+            // 3. 获取昨日对比
+            let comparison = weatherAPIClient.getYesterdayComparison()
             
-            if let bestTime = riskEvaluator.calculateBestTimeRange(
-                forecast: forecastData,
-                babyAgeInMonths: baby.ageInMonths
-            ) {
-                // 重新创建 result 包含最佳时间
-                result = EvaluationResult(
-                    overallScore: result.overallScore,
-                    riskLevel: result.riskLevel,
-                    factorContributions: result.factorContributions,
-                    recommendations: result.recommendations,
-                    humanSummary: result.humanSummary,
-                    bestTimeRange: bestTime
-                )
-            }
-            
-            // 5. 反向地理编码获取位置名称
+            // 4. 反向地理编码获取位置名称
             let placemark = try await geocoder.reverseGeocodeLocation(location)
             let locationName = placemark.first?.locality ?? placemark.first?.administrativeArea ?? "未知位置"
             
-            // 6. 更新缓存
+            // 5. 更新缓存
             self.cachedWeather = weather
-            self.cachedResult = result
+            self.cachedResult = evaluation
             self.cachedLocation = location
             self.lastFetchTime = Date()
             
@@ -133,7 +114,10 @@ class HomeViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 self.weatherData = weather
-                self.evaluationResult = result
+                self.evaluationResult = evaluation
+                self.recommendedTimeSlots = timeSlots
+                self.clothingAdvice = clothing
+                self.yesterdayComparison = comparison
                 self.locationName = locationName
                 self.lastUpdateTime = Date()
                 self.isLoading = false
@@ -272,6 +256,21 @@ struct HomeView: View {
             
             // 4. 当前天气概览（移到总结下方）
             weatherOverviewCard(weather)
+            
+            // V4: 昨日对比卡片
+            if let comparison = viewModel.yesterdayComparison {
+                yesterdayComparisonCard(comparison)
+            }
+            
+            // V4: 最佳外出时间推荐
+            if !viewModel.recommendedTimeSlots.isEmpty {
+                v4BestTimeCard(viewModel.recommendedTimeSlots)
+            }
+            
+            // V4: 穿衣指南
+            if let clothing = viewModel.clothingAdvice {
+                clothingCard(clothing)
+            }
             
             // 5. 原因列表
             reasonsCard(result)
@@ -805,6 +804,143 @@ struct HomeView: View {
         case .caution: return .orange
         case .unsafe: return .red
         }
+    }
+    
+    // MARK: - V4: 最佳外出时间推荐卡片
+    
+    private func v4BestTimeCard(_ timeSlots: [RecommendedTimeSlot]) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: "clock.arrow.circlepath")
+                    .foregroundColor(.green)
+                Text("最佳外出时间")
+                    .font(.headline)
+                Spacer()
+            }
+            
+            VStack(spacing: 12) {
+                ForEach(timeSlots.prefix(2)) { slot in
+                    HStack(spacing: 8) {
+                        Image(systemName: slot.isBest ? "crown.fill" : "checkmark.circle.fill")
+                            .foregroundColor(slot.isBest ? .orange : .green)
+                        
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(slot.timeRangeString)
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                            
+                            if !slot.reasons.isEmpty {
+                                Text("• " + slot.reasons.joined(separator: " • "))
+                                    .font(.caption)
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        
+                        Spacer()
+                    }
+                    .padding(.vertical, 4)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+    }
+    
+    // MARK: - V4: 穿衣指南卡片
+    
+    private func clothingCard(_ advice: ClothingAdvice) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: "tshirt.fill")
+                    .foregroundColor(.blue)
+                Text("宝宝穿衣建议")
+                    .font(.headline)
+                Spacer()
+            }
+            
+            VStack(alignment: .leading, spacing: 8) {
+                Text("体感温度 \(Int(advice.feelsLike))°C")
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+                
+                Text(advice.fullAdvice)
+                    .font(.subheadline)
+                    .foregroundColor(.primary)
+                
+                if !advice.notes.isEmpty {
+                    ForEach(advice.notes, id: \.self) { note in
+                        HStack(spacing: 4) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundColor(.orange)
+                                .font(.caption)
+                            Text(note)
+                                .font(.caption)
+                                .foregroundColor(.orange)
+                        }
+                    }
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
+    }
+    
+    // MARK: - V4: 昨日对比卡片
+    
+    private func yesterdayComparisonCard(_ comparison: WeatherComparison) -> some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Image(systemName: "arrow.left.arrow.right.circle.fill")
+                    .foregroundColor(comparison.isTodayBetter ? .green : .orange)
+                Text("与昨天对比")
+                    .font(.headline)
+                Spacer()
+            }
+            
+            VStack(alignment: .leading, spacing: 8) {
+                if !comparison.improvements.isEmpty {
+                    ForEach(comparison.improvements, id: \.self) { improvement in
+                        HStack(spacing: 4) {
+                            Image(systemName: "checkmark.circle.fill")
+                                .foregroundColor(.green)
+                                .font(.caption)
+                            Text(improvement)
+                                .font(.subheadline)
+                                .foregroundColor(.primary)
+                        }
+                    }
+                }
+                
+                if !comparison.degradations.isEmpty {
+                    ForEach(comparison.degradations, id: \.self) { degradation in
+                        HStack(spacing: 4) {
+                            Image(systemName: "xmark.circle.fill")
+                                .foregroundColor(.orange)
+                                .font(.caption)
+                            Text(degradation)
+                                .font(.subheadline)
+                                .foregroundColor(.secondary)
+                        }
+                    }
+                }
+                
+                HStack {
+                    Spacer()
+                    Text(comparison.summaryText)
+                        .font(.subheadline)
+                        .fontWeight(.medium)
+                        .foregroundColor(comparison.isTodayBetter ? .green : .primary)
+                }
+            }
+        }
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding()
+        .background(Color(.systemBackground))
+        .cornerRadius(12)
     }
 }
 

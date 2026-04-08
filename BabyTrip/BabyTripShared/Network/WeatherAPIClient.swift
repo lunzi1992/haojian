@@ -271,7 +271,7 @@ public class WeatherAPIClient: ObservableObject {
         
         do {
             let result = try JSONDecoder().decode(AirQualityResponseV1.self, from: data)
-            // 优先使用中国 AQI (cn-mee)，找不到就用第一个
+                // 优先使用中国 AQI (cn-mee)，找不到就用第一个
             if let cnIndex = result.indexes.first(where: { $0.code == "cn-mee" }) {
                 return cnIndex.aqi
             } else if let firstIndex = result.indexes.first {
@@ -329,6 +329,79 @@ public class WeatherAPIClient: ObservableObject {
     
     // MARK: - V4: 和风天气预报 (Web API v7)
     
+    public func fetchWeatherWithCache(
+        latitude: Double,
+        longitude: Double,
+        forceRefresh: Bool = false
+    ) async throws -> (weather: WeatherData, hourly: [QWeatherHourlyV7], timeSlots: [RecommendedTimeSlot], clothing: ClothingAdvice) {
+        let cache = WeatherCacheManager.shared
+        
+        // 检查缓存
+        if !forceRefresh, let cached = cache.loadCache(), cached.isValid {
+            print("[WeatherAPI] 使用缓存数据")
+            let slots = generateRecommendations(from: cached)
+            let clothing = TripRecommendationEngine().getClothingAdvice(
+                feelsLike: cached.weather.feelsLike,
+                windSpeed: cached.weather.windSpeed,
+                condition: cached.weather.condition
+            )
+            return (cached.weather, cached.hourly, slots, clothing)
+        }
+        
+        // 获取新数据
+        let weather = try await fetchWeather(latitude: latitude, longitude: longitude)
+        let hourly = try await fetchForecast(latitude: latitude, longitude: longitude)
+        
+        // 保存缓存
+        cache.saveCache(weather: weather, hourly: hourly, location: "\(latitude),\(longitude)")
+        
+        // 生成推荐
+        let slots = generateRecommendations(weather: weather, hourly: hourly)
+        let clothing = TripRecommendationEngine().getClothingAdvice(
+            feelsLike: weather.feelsLike,
+            windSpeed: weather.windSpeed,
+            condition: weather.condition
+        )
+        
+        return (weather, hourly, slots, clothing)
+    }
+    
+    private func generateRecommendations(from cached: CachedWeatherData) -> [RecommendedTimeSlot] {
+        return generateRecommendations(weather: cached.weather, hourly: cached.hourly)
+    }
+    
+    private func generateRecommendations(weather: WeatherData, hourly: [QWeatherHourlyV7]) -> [RecommendedTimeSlot] {
+        let engine = TripRecommendationEngine()
+        
+        // 为每小时添加 AQI 和 UV（使用当前值作为估算）
+        let scored = hourly.map { hour -> HourlyWeatherScore in
+            let (available, reason) = engine.checkHardFilter(hour: hour, aqi: weather.aqi)
+            let score = engine.calculateScore(hour: hour, aqi: weather.aqi, uv: weather.uvIndex)
+            
+            return HourlyWeatherScore(
+                date: hour.date ?? Date(),
+                temp: hour.temperature,
+                feelsLike: hour.feelsLike,
+                humidity: hour.humidityValue,
+                windSpeed: hour.windSpeedValue,
+                condition: hour.text,
+                aqi: weather.aqi,
+                uvIndex: weather.uvIndex,
+                score: score,
+                isAvailable: available,
+                unavailableReason: reason
+            )
+        }
+        
+        return engine.findBestTimeSlots(scored: scored)
+    }
+    
+    // MARK: - 获取昨日对比
+    public func getYesterdayComparison() -> WeatherComparison? {
+        return WeatherCacheManager.shared.getYesterdayComparison()
+    }
+    
+    // MARK: - 24小时预报 API
     public func fetchForecast(latitude: Double, longitude: Double) async throws -> [QWeatherHourlyV7] {
         // 先获取城市 ID
         let locationId = try await fetchLocationId(latitude: latitude, longitude: longitude)
@@ -368,37 +441,6 @@ public class WeatherAPIClient: ObservableObject {
         }
     }
     
-    public struct QWeatherHourlyResponseV7: Codable {
-        public let code: String
-        public let hourly: [QWeatherHourlyV7]?
-    }
-    
-    public struct QWeatherHourlyV7: Codable {
-        public let fxTime: String     // 时间 "2023-10-01T14:00+08:00"
-        public let temp: String       // 温度
-        public let text: String       // 天气描述
-        public let icon: String       // 天气图标代码
-        public let windSpeed: String  // 风速 km/h
-        public let humidity: String   // 湿度
-        
-        public var date: Date? {
-            let formatter = ISO8601DateFormatter()
-            return formatter.date(from: fxTime)
-        }
-        
-        public var temperature: Double {
-            return Double(temp) ?? 0
-        }
-        
-        public var humidityValue: Double {
-            return Double(humidity) ?? 0
-        }
-        
-        public var windSpeedValue: Double {
-            return Double(windSpeed) ?? 0
-        }
-    }
-    
     // MARK: - API 错误
     
     public enum APIError: Error {
@@ -409,6 +451,41 @@ public class WeatherAPIClient: ObservableObject {
         case apiError(code: String)
     }
 }
+
+// MARK: - 数据模型 (独立定义，跨文件可见)
+
+public struct QWeatherHourlyResponseV7: Codable {
+    public let code: String
+    public let hourly: [QWeatherHourlyV7]?
+}
+
+public struct QWeatherHourlyV7: Codable {
+    public let fxTime: String     // 时间 "2023-10-01T14:00+08:00"
+    public let temp: String       // 温度
+    public let text: String       // 天气描述
+    public let icon: String       // 天气图标代码
+    public let windSpeed: String  // 风速 km/h
+    public let humidity: String   // 湿度
+    
+    public var date: Date? {
+        let formatter = ISO8601DateFormatter()
+        return formatter.date(from: fxTime)
+    }
+    
+    public var temperature: Double {
+        return Double(temp) ?? 0
+    }
+    
+    public var humidityValue: Double {
+        return Double(humidity) ?? 0
+    }
+    
+    public var windSpeedValue: Double {
+        return Double(windSpeed) ?? 0
+    }
+}
+
+// MARK: - API 错误扩展
 
 extension WeatherAPIClient.APIError: LocalizedError {
     public var errorDescription: String? {

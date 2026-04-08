@@ -27,6 +27,8 @@
 		F3E4A5B6C7D8901234567891 /* PreferencesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1E2F3A4B5C6789012345678 /* PreferencesView.swift */; };
 		B2C3D4E5F6789012345678A0 /* UserPreferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F6789012345679 /* UserPreferences.swift */; };
 		D4E5F6A7B8C9012345678A1 /* WeatherAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6A7B8C9D0123456789012 /* WeatherAlertManager.swift */; };
+		A1B2C3D4E5F678901234567B /* TripRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F678901234567A /* TripRecommendation.swift */; };
+		B2C3D4E5F6789012345678B2 /* WeatherCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6789012345678B1 /* WeatherCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -70,6 +72,8 @@
 		EE7C487DAD204DD44879F891 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		F1C23CF593BF47261DC54ECE /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		F8121E2DDE7790743F83F17C /* .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B2C3D4E5F678901234567A /* TripRecommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRecommendation.swift; sourceTree = "<group>"; };
+		B2C3D4E5F6789012345678B1 /* WeatherCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +136,7 @@
 			children = (
 				0CFF94FE699CFBDDE850A761 /* UserSettings.swift */,
 				A1B2C3D4E5F6789012345679 /* UserPreferences.swift */,
+				B2C3D4E5F6789012345678B1 /* WeatherCache.swift */,
 			);
 			path = Storage;
 			sourceTree = "<group>";
@@ -211,6 +216,7 @@
 				43C79B571DF4055E4FCC2A21 /* EvaluationResult.swift */,
 				77CA01829732F897F3B1F6C0 /* RiskEvaluator.swift */,
 				8F9DF6C989F6D6ACFDF35ED2 /* WeatherData.swift */,
+				A1B2C3D4E5F678901234567A /* TripRecommendation.swift */,
 			);
 			path = RiskEvaluation;
 			sourceTree = "<group>";
@@ -326,6 +332,8 @@
 				69399BD1B33D324E2DF88F40 /* WeatherAPIClient.swift in Sources */,
 				D4E5F6A7B8C9012345678A1 /* WeatherAlertManager.swift in Sources */,
 				992A102C6B9FAF3132BD0E35 /* WeatherData.swift in Sources */,
+				A1B2C3D4E5F678901234567B /* TripRecommendation.swift in Sources */,
+				B2C3D4E5F6789012345678B2 /* WeatherCache.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
