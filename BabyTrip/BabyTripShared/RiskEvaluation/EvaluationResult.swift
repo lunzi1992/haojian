@@ -108,6 +108,7 @@ public enum RiskFactor: String, Codable, CaseIterable {
     case aqi
     case wind
     case humidity
+    case weatherCondition
     
     public var displayName: String {
         switch self {
@@ -123,6 +124,8 @@ public enum RiskFactor: String, Codable, CaseIterable {
             return "风速"
         case .humidity:
             return "湿度"
+        case .weatherCondition:
+            return "天气状况"
         }
     }
 }

@@ -29,6 +29,7 @@
 		D4E5F6A7B8C9012345678A1 /* WeatherAlertManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5F6A7B8C9D0123456789012 /* WeatherAlertManager.swift */; };
 		A1B2C3D4E5F678901234567B /* TripRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F678901234567A /* TripRecommendation.swift */; };
 		B2C3D4E5F6789012345678B2 /* WeatherCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6789012345678B1 /* WeatherCache.swift */; };
+		C1D2E3F4A5B678901234567D /* TripAdvisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2E3F4A5B678901234567C /* TripAdvisor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		F8121E2DDE7790743F83F17C /* .app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = .app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1B2C3D4E5F678901234567A /* TripRecommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRecommendation.swift; sourceTree = "<group>"; };
 		B2C3D4E5F6789012345678B1 /* WeatherCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCache.swift; sourceTree = "<group>"; };
+		C1D2E3F4A5B678901234567C /* TripAdvisor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripAdvisor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -217,6 +219,8 @@
 				77CA01829732F897F3B1F6C0 /* RiskEvaluator.swift */,
 				8F9DF6C989F6D6ACFDF35ED2 /* WeatherData.swift */,
 				A1B2C3D4E5F678901234567A /* TripRecommendation.swift */,
+				B2C3D4E5F6789012345678B1 /* WeatherCache.swift */,
+				C1D2E3F4A5B678901234567C /* TripAdvisor.swift */,
 			);
 			path = RiskEvaluation;
 			sourceTree = "<group>";
@@ -334,6 +338,7 @@
 				992A102C6B9FAF3132BD0E35 /* WeatherData.swift in Sources */,
 				A1B2C3D4E5F678901234567B /* TripRecommendation.swift in Sources */,
 				B2C3D4E5F6789012345678B2 /* WeatherCache.swift in Sources */,
+				C1D2E3F4A5B678901234567D /* TripAdvisor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

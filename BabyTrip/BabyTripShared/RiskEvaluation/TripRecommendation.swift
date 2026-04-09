@@ -32,7 +32,7 @@ public struct HourlyWeatherScore: Identifiable {
 }
 
 // MARK: - 推荐时间段
-public struct RecommendedTimeSlot: Identifiable {
+public struct RecommendedTimeSlot: Identifiable, Equatable {
     public let id = UUID()
     public let startTime: Date
     public let endTime: Date
@@ -48,7 +48,7 @@ public struct RecommendedTimeSlot: Identifiable {
 }
 
 // MARK: - 穿衣建议
-public struct ClothingAdvice {
+public struct ClothingAdvice: Equatable {
     public let baseLayers: [String]
     public let accessories: [String]
     public let notes: [String]
@@ -66,7 +66,7 @@ public struct ClothingAdvice {
 }
 
 // MARK: - 昨日对比结果
-public struct WeatherComparison {
+public struct WeatherComparison: Equatable {
     public let todayScore: Int
     public let yesterdayScore: Int
     public let isTodayBetter: Bool
@@ -431,10 +431,10 @@ public class TripRecommendationEngine {
             score -= 10
         }
         
-        // 天气状况
-        let badWeather = ["雨", "雪", "雷", "沙", "尘"]
+        // 天气状况 - 硬过滤：恶劣天气直接判定为不适合外出
+        let badWeather = ["雨", "雪", "雷", "沙", "尘", "雹", "雾", "霾"]
         if badWeather.contains(where: { weather.condition.contains($0) }) {
-            score -= 40
+            return 0  // 强制返回最低分，表示不建议外出
         }
         
         return max(0, min(100, score))

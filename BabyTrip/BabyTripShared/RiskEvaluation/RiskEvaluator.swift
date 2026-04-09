@@ -62,6 +62,13 @@ public final class RiskEvaluator {
             recommendations.append(contentsOf: humidityContribution.recommendations)
         }
         
+        // 7. 天气状况评分（V2新增：恶劣天气检测）
+        let weatherConditionContribution = evaluateWeatherCondition(condition: weather.condition)
+        contributions.append(weatherConditionContribution)
+        if weatherConditionContribution.points > 0 {
+            recommendations.append(contentsOf: weatherConditionContribution.recommendations)
+        }
+        
         // 计算基础风险分（各项累加）
         let baseScore = contributions.reduce(0) { $0 + $1.points }
         
@@ -236,6 +243,32 @@ public final class RiskEvaluator {
         
         return RiskFactorContribution(
             factor: .humidity,
+            points: points,
+            reasons: reasons,
+            recommendations: recommendations
+        )
+    }
+    
+    /// 天气状况评估（V2新增：恶劣天气直接高风险）
+    public func evaluateWeatherCondition(condition: String) -> RiskFactorContribution {
+        let badWeatherKeywords = ["雨", "雪", "雷", "沙", "尘", "雹", "雾", "霾"]
+        
+        var points = 0
+        var reasons: [String] = []
+        var recommendations: [String] = []
+        
+        // 检查是否包含恶劣天气关键词
+        for keyword in badWeatherKeywords {
+            if condition.contains(keyword) {
+                points += 50  // 恶劣天气直接加50分（高风险）
+                reasons.append("\(keyword)天不适合外出（\(condition)）")
+                recommendations.append("\(keyword)天气，建议改为室内活动")
+                break  // 找到一个就停止，避免重复计分
+            }
+        }
+        
+        return RiskFactorContribution(
+            factor: .weatherCondition,
             points: points,
             reasons: reasons,
             recommendations: recommendations
