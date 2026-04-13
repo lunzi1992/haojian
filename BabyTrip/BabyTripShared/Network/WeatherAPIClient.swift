@@ -12,24 +12,25 @@ import Foundation
 
 public class WeatherAPIClient: ObservableObject {
     private let apiKey: String
-    private let baseURL = "https://qv3qqrnxxu.re.qweatherapi.com/v7"
+    private let config: WeatherConfig
     private let urlSession: URLSession
     
     @Published public var isLoading = false
     @Published public var error: Error?
     
-    public init(apiKey: String = "") {
+    public init(apiKey: String = "", config: WeatherConfig = .shared) {
         if !apiKey.isEmpty {
             self.apiKey = apiKey
         } else {
             self.apiKey = (Bundle.main.object(forInfoDictionaryKey: "QWeatherAPIKey") as? String) ?? ""
         }
+        self.config = config
         
         // 开发调试用：允许代理和自签名证书
-        let config = URLSessionConfiguration.default
-        config.timeoutIntervalForRequest = 30
-        config.timeoutIntervalForResource = 300
-        self.urlSession = URLSession(configuration: config, delegate: InsecureURLSessionDelegate(), delegateQueue: nil)
+        let urlConfig = URLSessionConfiguration.default
+        urlConfig.timeoutIntervalForRequest = config.requestTimeout
+        urlConfig.timeoutIntervalForResource = config.resourceTimeout
+        self.urlSession = URLSession(configuration: urlConfig, delegate: InsecureURLSessionDelegate(), delegateQueue: nil)
     }
     
     // MARK: - V4: 和风天气 Web API v7 数据模型
@@ -156,7 +157,7 @@ public class WeatherAPIClient: ObservableObject {
     }
     
     private func fetchLocationId(latitude: Double, longitude: Double) async throws -> String {
-        let geoURL = "https://qv3qqrnxxu.re.qweatherapi.com/geo/v2/city/lookup?location=\(longitude.rounded(toPlaces: 6)),\(latitude.rounded(toPlaces: 6))&key=\(apiKey)"
+        let geoURL = "\(config.geoAPIBaseURL)/city/lookup?location=\(longitude.rounded(toPlaces: 6)),\(latitude.rounded(toPlaces: 6))&key=\(apiKey)"
         print("[WeatherAPI] Geo URL: \(geoURL)")
         
         guard let url = URL(string: geoURL) else {
@@ -190,7 +191,7 @@ public class WeatherAPIClient: ObservableObject {
     // MARK: - V4: 和风天气 Web API v7 方法
     
     private func fetchQWeatherNowV7(locationId: String) async throws -> QWeatherNowV7 {
-        let urlString = "\(baseURL)/weather/now?location=\(locationId)&key=\(apiKey)"
+        let urlString = "\(config.apiBaseURL)/weather/now?location=\(locationId)&key=\(apiKey)"
         print("[WeatherAPI] Weather URL: \(urlString)")
         guard let url = URL(string: urlString) else {
             throw APIError.invalidURL
@@ -237,7 +238,7 @@ public class WeatherAPIClient: ObservableObject {
     
     private func fetchQWeatherAirV7(locationId: String) async throws -> Int {
         // 使用 Air Quality API v1，通过经纬度查询
-        let geoURL = "https://qv3qqrnxxu.re.qweatherapi.com/geo/v2/city/lookup?location=\(locationId)&key=\(apiKey)"
+        let geoURL = "\(config.geoAPIBaseURL)/city/lookup?location=\(locationId)&key=\(apiKey)"
         guard let geoUrl = URL(string: geoURL) else {
             return 0
         }
@@ -250,7 +251,7 @@ public class WeatherAPIClient: ObservableObject {
             return 0
         }
         
-        let urlString = "https://qv3qqrnxxu.re.qweatherapi.com/airquality/v1/current/\(lat.rounded(toPlaces: 2))/\(lon.rounded(toPlaces: 2))?key=\(apiKey)"
+        let urlString = "\(config.airQualityAPIBaseURL)/current/\(lat.rounded(toPlaces: 2))/\(lon.rounded(toPlaces: 2))?key=\(apiKey)"
         print("[WeatherAPI] Air Quality URL: \(urlString)")
         guard let url = URL(string: urlString) else {
             return 0
@@ -296,7 +297,7 @@ public class WeatherAPIClient: ObservableObject {
     
     private func fetchQWeatherUVV7(locationId: String) async throws -> Double {
         // v7: 使用天气指数 API，type=5 表示紫外线指数
-        let urlString = "\(baseURL)/indices/1d?location=\(locationId)&type=5&key=\(apiKey)"
+        let urlString = "\(config.apiBaseURL)/indices/1d?location=\(locationId)&type=5&key=\(apiKey)"
         print("[WeatherAPI] UV URL: \(urlString)")
         guard let url = URL(string: urlString) else {
             throw APIError.invalidURL
@@ -407,7 +408,7 @@ public class WeatherAPIClient: ObservableObject {
         let locationId = try await fetchLocationId(latitude: latitude, longitude: longitude)
         
         // v7: 24小时预报 API
-        let urlString = "\(baseURL)/weather/24h?location=\(locationId)&key=\(apiKey)"
+        let urlString = "\(config.apiBaseURL)/weather/24h?location=\(locationId)&key=\(apiKey)"
         print("[WeatherAPI] Forecast URL: \(urlString)")
         
         guard let url = URL(string: urlString) else {

@@ -30,6 +30,7 @@
 		A1B2C3D4E5F678901234567B /* TripRecommendation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B2C3D4E5F678901234567A /* TripRecommendation.swift */; };
 		B2C3D4E5F6789012345678B2 /* WeatherCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2C3D4E5F6789012345678B1 /* WeatherCache.swift */; };
 		C1D2E3F4A5B678901234567D /* TripAdvisor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1D2E3F4A5B678901234567C /* TripAdvisor.swift */; };
+		AA11BB22CC33DD44EE55FF67 /* WeatherConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA11BB22CC33DD44EE55FF66 /* WeatherConfig.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,8 @@
 		A1B2C3D4E5F678901234567A /* TripRecommendation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripRecommendation.swift; sourceTree = "<group>"; };
 		B2C3D4E5F6789012345678B1 /* WeatherCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherCache.swift; sourceTree = "<group>"; };
 		C1D2E3F4A5B678901234567C /* TripAdvisor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripAdvisor.swift; sourceTree = "<group>"; };
+		AA11BB22CC33DD44EE55FF66 /* WeatherConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherConfig.swift; sourceTree = "<group>"; };
+		AA11BB22CC33DD44EE55FF68 /* WeatherConfig.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = WeatherConfig.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,9 +123,19 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		AA11BB22CC33DD44EE55FF69 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				AA11BB22CC33DD44EE55FF66 /* WeatherConfig.swift */,
+				AA11BB22CC33DD44EE55FF68 /* WeatherConfig.plist */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
 		1BCAE3A0D10B474A5F3C11C1 /* BabyTripShared */ = {
 			isa = PBXGroup;
 			children = (
+				AA11BB22CC33DD44EE55FF69 /* Config */,
 				77DC6AB1F8F995D31002F55B /* Location */,
 				F182283405DF05D7AAD5CB1C /* Network */,
 				EA8328736201727A7B0865FA /* RiskEvaluation */,
@@ -339,6 +352,7 @@
 				A1B2C3D4E5F678901234567B /* TripRecommendation.swift in Sources */,
 				B2C3D4E5F6789012345678B2 /* WeatherCache.swift in Sources */,
 				C1D2E3F4A5B678901234567D /* TripAdvisor.swift in Sources */,
+				AA11BB22CC33DD44EE55FF67 /* WeatherConfig.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
